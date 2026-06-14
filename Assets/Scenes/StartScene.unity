@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 24.793701, y: -730.6898}
+  m_AnchoredPosition: {x: 5.769, y: -785}
   m_SizeDelta: {x: 690.7661, y: 129.0535}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &79627545
@@ -525,8 +525,9 @@ GameObject:
   - component: {fileID: 941399949}
   - component: {fileID: 941399951}
   - component: {fileID: 941399950}
+  - component: {fileID: 941399952}
   m_Layer: 5
-  m_Name: Image
+  m_Name: ChessCubeImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,8 +549,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000013351, y: 0.0000076294}
-  m_SizeDelta: {x: 1283.2644, y: 1117.7898}
+  m_AnchoredPosition: {x: 5.769, y: -53.634}
+  m_SizeDelta: {x: 1453.6096, y: 1225.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &941399950
 MonoBehaviour:
@@ -589,6 +590,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 941399948}
   m_CullTransparentMesh: 1
+--- !u!114 &941399952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 941399948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0686cc8bc4707fb46985736cfff66913, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enableFloat: 1
+  floatHeight: 10
+  floatSpeed: 1
+  enableThrob: 1
+  throbAmount: 0.08
+  throbSpeed: 1
+  enableRotation: 0
+  rotationSpeed: 30
 --- !u!1 &961739749
 GameObject:
   m_ObjectHideFlags: 0
