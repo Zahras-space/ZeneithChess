@@ -3,6 +3,11 @@ using System.Collections.Generic;
 
 public class ChessBoardManager : MonoBehaviour
 {
+
+    [Header("Audio")]
+    public AudioSource clickSound;   // drag first AudioSource here
+    public AudioSource moveSound;    // drag second AudioSource here
+
     [Header("References")]
     public GameObject boardParent; // drag your 3DChessBoard here
 
@@ -245,6 +250,7 @@ Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cel
             {
                 selectedCell = clickedCell;
                 HighlightMoves(clickedCell);
+                  clickSound?.Play();
             }
         }
     }
@@ -272,6 +278,7 @@ Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cel
         movingPiece.currentCell = to;
         movingPiece.hasMoved    = true;
 
+        moveSound?.Play();
         ClearHighlights();
         selectedCell = null;
 
