@@ -84,7 +84,10 @@ public class ChessBoard3DGenerator
                     }
 
                     // Optional component
-                    cell.AddComponent<BoardCell>();
+                    BoardCell bc = cell.AddComponent<BoardCell>();
+                    bc.x = x;
+                    bc.y = y;
+                    bc.z = z;
                 }
             }
         }

@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 10
+  serializedVersion: 9
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -42,8 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 13
-  m_BakeOnSceneLoad: 0
+  serializedVersion: 12
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -66,6 +66,9 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
+    m_FinalGather: 0
+    m_FinalGatherFiltering: 1
+    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -170,6 +173,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1547395
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -187,9 +191,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -295,6 +296,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1741929
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -312,9 +314,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -420,6 +419,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &8988819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -437,9 +437,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -545,6 +542,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &12378924
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -562,9 +560,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -670,6 +665,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &20407074
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -687,9 +683,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -795,6 +788,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &30391699
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -812,9 +806,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -920,6 +911,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &35188979
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -937,9 +929,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1045,6 +1034,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &36029786
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1062,9 +1052,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1170,6 +1157,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &71763553
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1187,9 +1175,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1295,6 +1280,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &73152449
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1312,9 +1298,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1420,6 +1403,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &76118163
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1437,9 +1421,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1545,6 +1526,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &78780637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1562,9 +1544,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1670,6 +1649,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &82303204
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1687,9 +1667,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1795,6 +1772,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &91182189
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1812,9 +1790,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -1920,6 +1895,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &95369309
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1937,9 +1913,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2045,6 +2018,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &111755492
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2062,9 +2036,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2170,6 +2141,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &116087352
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2187,9 +2159,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2295,6 +2264,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &121819371
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2312,9 +2282,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2420,6 +2387,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &136631873
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2437,9 +2405,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2545,6 +2510,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &148180940
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2562,9 +2528,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2670,6 +2633,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &157566595
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2687,9 +2651,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2795,6 +2756,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &160228671
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2812,9 +2774,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2920,6 +2879,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &188959962
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2937,9 +2897,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3045,6 +3002,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &192931929
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3062,9 +3020,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3170,6 +3125,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &213324597
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3187,9 +3143,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3295,6 +3248,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &213595113
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3312,9 +3266,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3420,6 +3371,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &218467025
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3437,9 +3389,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3545,6 +3494,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &219165217
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3562,9 +3512,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3670,6 +3617,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &223328936
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3687,9 +3635,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3795,6 +3740,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &225169145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3812,9 +3758,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -3920,6 +3863,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &231353571
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3937,9 +3881,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4045,6 +3986,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &233321910
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4062,9 +4004,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4170,6 +4109,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &233882082
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4187,9 +4127,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4295,6 +4232,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &241282284
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4312,9 +4250,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4420,6 +4355,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &242236047
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4437,9 +4373,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4545,6 +4478,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &244495702
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4562,9 +4496,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4670,6 +4601,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &251150582
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4687,9 +4619,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4795,6 +4724,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &259010244
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4812,9 +4742,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -4920,6 +4847,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &259909667
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4937,9 +4865,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5045,6 +4970,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &261563498
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5062,9 +4988,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5170,6 +5093,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &264717632
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5187,9 +5111,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5295,6 +5216,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &266235143
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5312,9 +5234,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5420,6 +5339,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &267064224
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5437,9 +5357,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5545,6 +5462,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &279545883
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5562,9 +5480,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5670,6 +5585,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &283424222
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5687,9 +5603,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5795,6 +5708,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &300237894
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5812,9 +5726,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -5920,6 +5831,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &308203001
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5937,9 +5849,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6045,6 +5954,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &311586254
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6062,9 +5972,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6170,6 +6077,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &326524151
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6187,9 +6095,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6257,6 +6162,7 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
+  - component: {fileID: 330585549}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -6389,7 +6295,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 428f0cf18d8a4454e800aa0147956381, type: 3}
   m_Name: 
@@ -6397,6 +6303,24 @@ MonoBehaviour:
   cubeCenter: {fileID: 1541622089}
   distance: 12
   moveSpeed: 3
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1ff8fa91c719034781785fd44cb0cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 689101882}
+  distance: 8
+  rotateSpeed: 0.4
+  zoomSpeed: 2
+  minDistance: 4
+  maxDistance: 15
 --- !u!1 &338043082
 GameObject:
   m_ObjectHideFlags: 0
@@ -6448,6 +6372,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &338043085
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6465,9 +6390,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6573,6 +6495,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &338689790
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6590,9 +6513,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6698,6 +6618,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &348518732
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6715,9 +6636,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6823,6 +6741,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &360688007
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6840,9 +6759,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -6948,6 +6864,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &364413517
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -6965,9 +6882,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7073,6 +6987,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &372583155
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7090,9 +7005,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7198,6 +7110,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &374978826
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7215,9 +7128,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7323,6 +7233,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &376725899
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7340,9 +7251,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7448,6 +7356,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &378971878
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7465,9 +7374,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7573,6 +7479,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &390341380
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7590,9 +7497,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7698,6 +7602,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &394532065
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7715,9 +7620,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7823,6 +7725,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &403892820
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7840,9 +7743,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -7948,6 +7848,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &406989498
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7965,9 +7866,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8073,6 +7971,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &408394895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8090,9 +7989,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8173,8 +8069,9 @@ Light:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 410087039}
   m_Enabled: 1
-  serializedVersion: 11
+  serializedVersion: 10
   m_Type: 1
+  m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 2
   m_Range: 10
@@ -8224,12 +8121,8 @@ Light:
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
-  m_ForceVisible: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
-  m_LightUnit: 1
-  m_LuxAtDistance: 1
-  m_EnableSpotReflector: 1
 --- !u!4 &410087041
 Transform:
   m_ObjectHideFlags: 0
@@ -8319,6 +8212,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &415074361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8336,9 +8230,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8444,6 +8335,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &416046258
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8461,9 +8353,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8569,6 +8458,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &418599053
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8586,9 +8476,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8694,6 +8581,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &418782799
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8711,9 +8599,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8819,6 +8704,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &419612657
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8836,9 +8722,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -8944,6 +8827,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &429350940
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8961,9 +8845,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9069,6 +8950,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &434391830
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9086,9 +8968,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9194,6 +9073,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &437528655
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9211,9 +9091,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9319,6 +9196,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &442571443
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9336,9 +9214,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9444,6 +9319,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &454239206
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9461,9 +9337,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9569,6 +9442,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &454856531
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9586,9 +9460,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9694,6 +9565,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &455550721
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9711,9 +9583,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9819,6 +9688,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &456115275
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9836,9 +9706,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -9944,6 +9811,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &456909883
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -9961,9 +9829,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10069,6 +9934,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &458830406
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10086,9 +9952,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10194,6 +10057,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &467896114
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10211,9 +10075,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10319,6 +10180,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &475896595
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10336,9 +10198,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10444,6 +10303,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &478836924
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10461,9 +10321,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10569,6 +10426,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &479781137
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10586,9 +10444,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10694,6 +10549,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &482933171
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10711,9 +10567,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10819,6 +10672,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &483388239
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10836,9 +10690,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10944,6 +10795,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &493711052
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -10961,9 +10813,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11069,6 +10918,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &504961114
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11086,9 +10936,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11194,6 +11041,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &507632634
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11211,9 +11059,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11319,6 +11164,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &513277920
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11336,9 +11182,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11444,6 +11287,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &514819585
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11461,9 +11305,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11569,6 +11410,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &522336901
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11586,9 +11428,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11694,6 +11533,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &525255635
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11711,9 +11551,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11819,6 +11656,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &532591807
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11836,9 +11674,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -11944,6 +11779,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &540660381
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11961,9 +11797,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12069,6 +11902,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &540839938
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12086,9 +11920,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12194,6 +12025,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &544258261
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12211,9 +12043,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12319,6 +12148,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &546400494
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12336,9 +12166,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12444,6 +12271,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &547665707
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12461,9 +12289,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12569,6 +12394,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &547728715
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12586,9 +12412,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12694,6 +12517,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &548060514
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12711,9 +12535,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12819,6 +12640,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &548724154
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12836,9 +12658,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -12944,6 +12763,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &548952956
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -12961,9 +12781,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13069,6 +12886,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &554958652
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13086,9 +12904,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13194,6 +13009,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &566945479
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13211,9 +13027,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13319,6 +13132,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &570046297
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13336,9 +13150,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13444,6 +13255,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &572528590
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13461,9 +13273,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13569,6 +13378,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &574890241
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13586,9 +13396,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13694,6 +13501,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &581984027
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13711,9 +13519,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13819,6 +13624,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &601911756
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13836,9 +13642,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -13944,6 +13747,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &615498068
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13961,9 +13765,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14069,6 +13870,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &615793934
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14086,9 +13888,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14194,6 +13993,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &617013594
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14211,9 +14011,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14319,6 +14116,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &617538511
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14336,9 +14134,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14444,6 +14239,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &621028381
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14461,9 +14257,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14569,6 +14362,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &625318763
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14586,9 +14380,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14694,6 +14485,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &629132870
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14711,9 +14503,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14819,6 +14608,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &630110299
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14836,9 +14626,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -14944,6 +14731,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &637346098
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14961,9 +14749,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15069,6 +14854,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &638359880
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15086,9 +14872,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15194,6 +14977,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &646509943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15211,9 +14995,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15319,6 +15100,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &647439716
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15336,9 +15118,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15444,6 +15223,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &649444805
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15461,9 +15241,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15569,6 +15346,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &655884311
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15586,9 +15364,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15694,6 +15469,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &662459306
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15711,9 +15487,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15819,6 +15592,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &664942617
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15836,9 +15610,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -15944,6 +15715,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &668002804
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15961,9 +15733,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16069,6 +15838,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &673443643
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16086,9 +15856,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16194,6 +15961,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &676336095
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16211,9 +15979,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16693,6 +16458,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &704020943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16710,9 +16476,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16818,6 +16581,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &705263443
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16835,9 +16599,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16943,6 +16704,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &719137018
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -16960,9 +16722,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17068,6 +16827,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &721766817
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17085,9 +16845,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17193,6 +16950,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &731159164
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17210,9 +16968,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17318,6 +17073,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &737293282
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17335,9 +17091,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17443,6 +17196,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &741006668
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17460,9 +17214,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17568,6 +17319,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &742405194
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17585,9 +17337,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17693,6 +17442,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &744168168
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17710,9 +17460,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17818,6 +17565,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &746721720
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17835,9 +17583,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -17943,6 +17688,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &749005361
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -17960,9 +17706,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18068,6 +17811,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &750581793
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18085,9 +17829,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18193,6 +17934,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &751576595
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18210,9 +17952,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18318,6 +18057,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &754536800
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18335,9 +18075,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18443,6 +18180,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &757952345
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18460,9 +18198,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18568,6 +18303,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &764444607
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18585,9 +18321,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18693,6 +18426,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &770906335
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18710,9 +18444,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18818,6 +18549,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &775234279
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18835,9 +18567,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18943,6 +18672,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &781295780
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -18960,9 +18690,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19068,6 +18795,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &783678964
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19085,9 +18813,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19193,6 +18918,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &793086279
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19210,9 +18936,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19318,6 +19041,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &794644170
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19335,9 +19059,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19443,6 +19164,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &799896490
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19460,9 +19182,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19568,6 +19287,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &801637006
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19585,9 +19305,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19693,6 +19410,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &818728908
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19710,9 +19428,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19818,6 +19533,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &823509782
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19835,9 +19551,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -19943,6 +19656,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &824736353
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -19960,9 +19674,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20117,6 +19828,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &845335418
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20134,9 +19846,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20242,6 +19951,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &864767915
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20259,9 +19969,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20367,6 +20074,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &894469510
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20384,9 +20092,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20492,6 +20197,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &907927144
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20509,9 +20215,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20617,6 +20320,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &914235162
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20634,9 +20338,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20742,6 +20443,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &914596277
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20759,9 +20461,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20867,6 +20566,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &922595543
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -20884,9 +20584,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -20992,6 +20689,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &933616860
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21009,9 +20707,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21117,6 +20812,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &934245266
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21134,9 +20830,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21242,6 +20935,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &936353895
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21259,9 +20953,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21367,6 +21058,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &937878169
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21384,9 +21076,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21492,6 +21181,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &939821660
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21509,9 +21199,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21617,6 +21304,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &951388914
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21634,9 +21322,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21742,6 +21427,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &961697088
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21759,9 +21445,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21867,6 +21550,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &966145110
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -21884,9 +21568,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21992,6 +21673,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &968007972
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22009,9 +21691,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22117,6 +21796,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &972219206
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22134,9 +21814,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22242,6 +21919,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &978578800
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22259,9 +21937,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22367,6 +22042,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &989270619
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22384,9 +22060,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22492,6 +22165,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &999333036
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22509,9 +22183,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22617,6 +22288,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1007895889
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22634,9 +22306,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22742,6 +22411,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1011040112
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22759,9 +22429,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22867,6 +22534,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1026831568
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -22884,9 +22552,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22992,6 +22657,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1034174265
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23009,9 +22675,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23117,6 +22780,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1048572624
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23134,9 +22798,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23242,6 +22903,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1049585610
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23259,9 +22921,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23367,6 +23026,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1050759260
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23384,9 +23044,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23492,6 +23149,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1056108544
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23509,9 +23167,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23617,6 +23272,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1056618698
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23634,9 +23290,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23742,6 +23395,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1083078606
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23759,9 +23413,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23867,6 +23518,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1088527366
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -23884,9 +23536,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -23992,6 +23641,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1090400729
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24009,9 +23659,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24117,6 +23764,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1092130479
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24134,9 +23782,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24242,6 +23887,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1099532659
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24259,9 +23905,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24367,6 +24010,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1109706060
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24384,9 +24028,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24492,6 +24133,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1115707397
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24509,9 +24151,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24617,6 +24256,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1123528449
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24634,9 +24274,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24742,6 +24379,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1125613189
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24759,9 +24397,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24867,6 +24502,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1129348467
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -24884,9 +24520,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24992,6 +24625,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1135579495
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25009,9 +24643,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25117,6 +24748,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1141313109
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25134,9 +24766,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25242,6 +24871,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1151247679
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25259,9 +24889,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25367,6 +24994,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1152412773
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25384,9 +25012,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25492,6 +25117,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1156651686
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25509,9 +25135,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25617,6 +25240,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1164613394
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25634,9 +25258,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25742,6 +25363,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1168755637
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25759,9 +25381,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25867,6 +25486,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1179199423
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -25884,9 +25504,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -25992,6 +25609,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1185335578
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26009,9 +25627,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26117,6 +25732,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1197886021
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26134,9 +25750,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26242,6 +25855,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1199582177
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26259,9 +25873,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26367,6 +25978,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1210252767
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26384,9 +25996,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26492,6 +26101,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1220173613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26509,9 +26119,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26617,6 +26224,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1220751613
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26634,9 +26242,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26742,6 +26347,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1223973883
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26759,9 +26365,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26867,6 +26470,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1226467308
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -26884,9 +26488,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26992,6 +26593,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1237619599
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27009,9 +26611,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27117,6 +26716,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1241859951
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27134,9 +26734,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27242,6 +26839,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1243821943
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27259,9 +26857,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27367,6 +26962,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1262211003
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27384,9 +26980,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27492,6 +27085,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1268011674
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27509,9 +27103,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27617,6 +27208,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1281930249
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27634,9 +27226,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27742,6 +27331,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1282886352
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27759,9 +27349,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27867,6 +27454,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1295244573
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -27884,9 +27472,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -27992,6 +27577,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1307272500
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28009,9 +27595,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28117,6 +27700,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1310107907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28134,9 +27718,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28242,6 +27823,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1311973007
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28259,9 +27841,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28367,6 +27946,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1331235934
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28384,9 +27964,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28492,6 +28069,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1332916561
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28509,9 +28087,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28617,6 +28192,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1339576355
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28634,9 +28210,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28742,6 +28315,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1342886212
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28759,9 +28333,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28867,6 +28438,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1344225681
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -28884,9 +28456,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -28992,6 +28561,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1344903770
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29009,9 +28579,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29117,6 +28684,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1345635636
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29134,9 +28702,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29242,6 +28807,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1347112989
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29259,9 +28825,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29367,6 +28930,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1354386934
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29384,9 +28948,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29492,6 +29053,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1362690968
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29509,9 +29071,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29617,6 +29176,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1363922045
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29634,9 +29194,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29742,6 +29299,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1388816650
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29759,9 +29317,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29867,6 +29422,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1394216952
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -29884,9 +29440,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -29992,6 +29545,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1396366188
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30009,9 +29563,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30117,6 +29668,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1405296116
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30134,9 +29686,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30242,6 +29791,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1413585117
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30259,9 +29809,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30367,6 +29914,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1425715726
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30384,9 +29932,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30492,6 +30037,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1441210099
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30509,9 +30055,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30617,6 +30160,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1447902347
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30634,9 +30178,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30742,6 +30283,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1474867005
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30759,9 +30301,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30867,6 +30406,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1475331326
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -30884,9 +30424,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -30992,6 +30529,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1479599115
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31009,9 +30547,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31117,6 +30652,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1482479783
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31134,9 +30670,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31242,6 +30775,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1483738648
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31259,9 +30793,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31367,6 +30898,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1518410348
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31384,9 +30916,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31492,6 +31021,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1527516063
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31509,9 +31039,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31623,9 +31150,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31725,6 +31249,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1551290887
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31742,9 +31267,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31850,6 +31372,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1552073273
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31867,9 +31390,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -31975,6 +31495,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1552953207
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -31992,9 +31513,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32100,6 +31618,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1558429517
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32117,9 +31636,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32225,6 +31741,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1560759364
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32242,9 +31759,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32350,6 +31864,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1573189964
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32367,9 +31882,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32475,6 +31987,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1581739294
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32492,9 +32005,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32600,6 +32110,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1582680541
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32617,9 +32128,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32725,6 +32233,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1583899310
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32742,9 +32251,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32850,6 +32356,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1586524120
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32867,9 +32374,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -32975,6 +32479,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1587753421
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -32992,9 +32497,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33100,6 +32602,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1593497595
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33117,9 +32620,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33225,6 +32725,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1594781518
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33242,9 +32743,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33350,6 +32848,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1596838359
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33367,9 +32866,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33475,6 +32971,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1602683346
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33492,9 +32989,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33600,6 +33094,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1608796369
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33617,9 +33112,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33725,6 +33217,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1611668755
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33742,9 +33235,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33850,6 +33340,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1612439819
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33867,9 +33358,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -33975,6 +33463,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1636162465
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -33992,9 +33481,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34100,6 +33586,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1636392575
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34117,9 +33604,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34225,6 +33709,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1651336645
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34242,9 +33727,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34350,6 +33832,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1652139649
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34367,9 +33850,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34475,6 +33955,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1653679159
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34492,9 +33973,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34600,6 +34078,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1654033425
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34617,9 +34096,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34725,6 +34201,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1655398315
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34742,9 +34219,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34850,6 +34324,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1672120777
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34867,9 +34342,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -34975,6 +34447,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1674461446
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -34992,9 +34465,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35100,6 +34570,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1682195131
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35117,9 +34588,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35225,6 +34693,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1699176494
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35242,9 +34711,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35350,6 +34816,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1728762704
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35367,9 +34834,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35475,6 +34939,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1733042602
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35492,9 +34957,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35600,6 +35062,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1743694627
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35617,9 +35080,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35725,6 +35185,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1748159498
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35742,9 +35203,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35850,6 +35308,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1757462313
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35867,9 +35326,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -35975,6 +35431,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1757474787
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -35992,9 +35449,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36100,6 +35554,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1761209235
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36117,9 +35572,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36225,6 +35677,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1768889586
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36242,9 +35695,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36350,6 +35800,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1775175875
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36367,9 +35818,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36475,6 +35923,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1775845036
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36492,9 +35941,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36600,6 +36046,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1779028991
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36617,9 +36064,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36725,6 +36169,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1786223061
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36742,9 +36187,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36850,6 +36292,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1787790221
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36867,9 +36310,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -36975,6 +36415,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1790407524
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -36992,9 +36433,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37100,6 +36538,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1797671482
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37117,9 +36556,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37225,6 +36661,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1825650474
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37242,9 +36679,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37350,6 +36784,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1828431591
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37367,9 +36802,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37475,6 +36907,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1831654907
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37492,9 +36925,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37600,6 +37030,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1844994304
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37617,9 +37048,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37725,6 +37153,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1854493455
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37742,9 +37171,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37850,6 +37276,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1862852624
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37867,9 +37294,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -37975,6 +37399,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1867538274
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -37992,9 +37417,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38100,6 +37522,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1871774865
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38117,9 +37540,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38225,6 +37645,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1872933625
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38242,9 +37663,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38350,6 +37768,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1876859122
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38367,9 +37786,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38475,6 +37891,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1885855121
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38492,9 +37909,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38600,6 +38014,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1896604901
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38617,9 +38032,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38725,6 +38137,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1901382067
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38742,9 +38155,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38850,6 +38260,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1909082565
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38867,9 +38278,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -38975,6 +38383,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1910802250
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -38992,9 +38401,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39100,6 +38506,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1912690776
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39117,9 +38524,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39225,6 +38629,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1915027787
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39242,9 +38647,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39350,6 +38752,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1916003435
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39367,9 +38770,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39475,6 +38875,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1916099483
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39492,9 +38893,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39600,6 +38998,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1920032084
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39617,9 +39016,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39725,6 +39121,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1920382401
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39742,9 +39139,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39850,6 +39244,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1923353152
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39867,9 +39262,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -39975,6 +39367,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1924133564
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -39992,9 +39385,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40100,6 +39490,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1929027202
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40117,9 +39508,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40225,6 +39613,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1929612511
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40242,9 +39631,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40350,6 +39736,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1938546589
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40367,9 +39754,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40475,6 +39859,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1951972346
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40492,9 +39877,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40600,6 +39982,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1956026064
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40617,9 +40000,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40674,6 +40054,60 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1956026061}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1961069356
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1961069358}
+  - component: {fileID: 1961069357}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1961069357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961069356}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b725d0e3a7970a44e8fb522eb7e3096e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boardParent: {fileID: 689101881}
+  whitePawnPrefab: {fileID: 4706872547172626492, guid: 6ffbdf39a32d44641b5931769b4f7e7f, type: 3}
+  whiteRookPrefab: {fileID: 2442099351644324551, guid: 53634cd0db15f0d4e9a93a5143fa0c16, type: 3}
+  whiteQueenPrefab: {fileID: 1749374157690589891, guid: c962464fbd3e47e49980791f14612be0, type: 3}
+  whiteKingPrefab: {fileID: 8743673182277775989, guid: b8e44fa9afe28ce4d91df9a469971da9, type: 3}
+  blackPawnPrefab: {fileID: 698121836411348812, guid: 0d779c95adba1194db0f938a4a6a3339, type: 3}
+  blackRookPrefab: {fileID: 3166511139309157846, guid: 06df79f9580dd6044806754a0b964581, type: 3}
+  blackQueenPrefab: {fileID: 6499197578323015342, guid: 2b483b4f5bc08064d9b617a6c9f4fee3, type: 3}
+  blackKingPrefab: {fileID: 1249996722537591641, guid: 5948213c1fad03d4f851b5d316d3cfe9, type: 3}
+  pieceHeightOffset: 0.6
+--- !u!4 &1961069358
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1961069356}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.13843256, y: -0.36694977, z: 9.118747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1963989832
 GameObject:
   m_ObjectHideFlags: 0
@@ -40725,6 +40159,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1963989835
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40742,9 +40177,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40850,6 +40282,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1965354280
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40867,9 +40300,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -40975,6 +40405,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1973593684
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -40992,9 +40423,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41100,6 +40528,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1973686199
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41117,9 +40546,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41225,6 +40651,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1977870288
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41242,9 +40669,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41350,6 +40774,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1989910577
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41367,9 +40792,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41475,6 +40897,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &1992704918
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41492,9 +40915,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41600,6 +41020,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2001094153
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41617,9 +41038,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41725,6 +41143,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2025836063
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41742,9 +41161,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41850,6 +41266,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2026082860
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41867,9 +41284,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -41975,6 +41389,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2028158274
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -41992,9 +41407,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42100,6 +41512,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2039771183
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42117,9 +41530,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42225,6 +41635,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2044454298
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42242,9 +41653,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42350,6 +41758,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2046761606
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42367,9 +41776,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42475,6 +41881,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2055433570
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42492,9 +41899,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42600,6 +42004,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2065284444
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42617,9 +42022,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42725,6 +42127,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2070670275
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42742,9 +42145,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42850,6 +42250,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2070917798
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42867,9 +42268,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -42975,6 +42373,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2077722622
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -42992,9 +42391,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -43100,6 +42496,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2092194200
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43117,9 +42514,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -43225,6 +42619,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2100642492
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43242,9 +42637,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -43350,6 +42742,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2110262540
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43367,9 +42760,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -43475,6 +42865,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2119684648
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43492,9 +42883,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -43600,6 +42988,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2140663784
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43617,9 +43006,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -43725,6 +43111,7 @@ MonoBehaviour:
   y: 0
   z: 0
   currentPiece: {fileID: 0}
+  face: 
 --- !u!23 &2145507122
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -43742,9 +43129,6 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RayTracingAccelStructBuildFlagsOverride: 0
-  m_RayTracingAccelStructBuildFlags: 1
-  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -43808,3 +43192,4 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1541622089}
   - {fileID: 689101882}
+  - {fileID: 1961069358}
