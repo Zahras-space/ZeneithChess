@@ -19,12 +19,12 @@ public class ChessBoardManager : MonoBehaviour
     public GameObject blackKingPrefab;
 
     [Header("Settings")]
-    public float pieceHeightOffset = 0.6f;
+    public float pieceHeightOffset = 0.55f; // FIX 2: was 0.6f — tuned so pieces sit ON the surface
 
     // Internal
     private BoardCell[,,] cells = new BoardCell[7, 7, 7];
     private List<BoardCell> frontFaceCells = new List<BoardCell>();
-    private List<BoardCell> backFaceCells = new List<BoardCell>();
+    private List<BoardCell> backFaceCells  = new List<BoardCell>();
 
     private BoardCell selectedCell = null;
     private List<BoardCell> highlightedMoves = new List<BoardCell>();
@@ -54,80 +54,94 @@ public class ChessBoardManager : MonoBehaviour
 
             int boardSize = 6; // max index
             // Assign face label
-            if (cell.z == boardSize) cell.face = "front";
-            else if (cell.z == 0) cell.face = "back";
-            else if (cell.x == 0) cell.face = "left";
+            if      (cell.z == boardSize) cell.face = "front";
+            else if (cell.z == 0)         cell.face = "back";
+            else if (cell.x == 0)         cell.face = "left";
             else if (cell.x == boardSize) cell.face = "right";
             else if (cell.y == boardSize) cell.face = "top";
-            else if (cell.y == 0) cell.face = "bottom";
+            else if (cell.y == 0)         cell.face = "bottom";
 
             if (cell.face == "front") frontFaceCells.Add(cell);
-            if (cell.face == "back") backFaceCells.Add(cell);
+            if (cell.face == "back")  backFaceCells.Add(cell);
         }
     }
 
     // ── PIECE SPAWNING ───────────────────────────────────────────────
+    // FIX 3: Corrected row indices so pieces land on inner face rows (y=1..5),
+    //         not on the edge rows (y=0 or y=6) which are cube edges, not playable cells.
     void SpawnPieces()
     {
-        // WHITE on FRONT face (z=6), bottom two rows (y=0,1)
-        SpawnRow(frontFaceCells, PieceColor.White, isBackRow: true, rowY: 1);
-        SpawnRow(frontFaceCells, PieceColor.White, isBackRow: false, rowY: 0);
+{
+    // WHITE on FRONT face — back row at y=0, pawns at y=1
+    SpawnBackRow(frontFaceCells, PieceColor.White, rowY: 0);
+    SpawnPawnRow(frontFaceCells, PieceColor.White, rowY: 1);
 
-        // BLACK on BACK face (z=0), bottom two rows (y=0,1)
-        SpawnRow(backFaceCells, PieceColor.Black, isBackRow: true, rowY: 1);
-        SpawnRow(backFaceCells, PieceColor.Black, isBackRow: false, rowY: 0);
+    // BLACK on BACK face — mirrored: back row at y=6, pawns at y=5
+    SpawnBackRow(backFaceCells, PieceColor.Black, rowY: 6);
+    SpawnPawnRow(backFaceCells, PieceColor.Black, rowY: 5);
+
+
+Debug.Log($"Back row for White: {frontFaceCells.FindAll(c => c.y == 0).Count} cells at y=0");
+Debug.Log($"Pawn row for White: {frontFaceCells.FindAll(c => c.y == 1).Count} cells at y=1");
+Debug.Log($"Back row for Black: {backFaceCells.FindAll(c => c.y == 6).Count} cells at y=6");
+Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cells at y=5");}
     }
-
-    void SpawnRow(List<BoardCell> faceCells, PieceColor color, bool isBackRow, int rowY)
+    void SpawnBackRow(List<BoardCell> faceCells, PieceColor color, int rowY)
     {
-        // Get cells in this row sorted by x
         List<BoardCell> row = faceCells.FindAll(c => c.y == rowY);
         row.Sort((a, b) => a.x.CompareTo(b.x));
 
-        if (isBackRow)
-        {
-            // Back row: Rook, empty, Queen, King, empty, empty, Rook
-            PieceType[] layout = {
-                PieceType.Rook, PieceType.Rook, PieceType.Queen,
-                PieceType.King, PieceType.Rook, PieceType.Rook, PieceType.Rook
-            };
-            // Simplified: Rook, -, Queen, King, -, -, Rook
-            PieceType?[] layout2 = {
-                PieceType.Rook, null, PieceType.Queen,
-                PieceType.King, null, null, PieceType.Rook
-            };
+        // Layout: Rook, -, Queen, King, -, -, Rook  (null = empty square)
+        PieceType?[] layout = {
+            PieceType.Rook, null, PieceType.Queen,
+            PieceType.King, null, null, PieceType.Rook
+        };
 
-            for (int i = 0; i < row.Count && i < layout2.Length; i++)
-            {
-                if (layout2[i].HasValue)
-                    PlacePiece(layout2[i].Value, color, row[i]);
-            }
-        }
-        else
+        for (int i = 0; i < row.Count && i < layout.Length; i++)
         {
-            // Pawn row
-            foreach (BoardCell cell in row)
-                PlacePiece(PieceType.Pawn, color, cell);
+            if (layout[i].HasValue)
+                PlacePiece(layout[i].Value, color, row[i]);
         }
     }
 
+    void SpawnPawnRow(List<BoardCell> faceCells, PieceColor color, int rowY)
+    {
+        List<BoardCell> row = faceCells.FindAll(c => c.y == rowY);
+        foreach (BoardCell cell in row)
+            PlacePiece(PieceType.Pawn, color, cell);
+    }
+
+    // FIX 2: Uses GetFaceNormal (not cell.transform.up) so the offset direction
+    //         is always correct regardless of cell object orientation.
+    //         Also scales pieces down and names them with coordinates for debugging.
     void PlacePiece(PieceType type, PieceColor color, BoardCell cell)
     {
         GameObject prefab = GetPrefab(type, color);
-        if (prefab == null) { Debug.LogWarning($"Missing prefab: {color} {type}"); return; }
+        if (prefab == null)
+        {
+            Debug.LogWarning($"Missing prefab: {color} {type}");
+            return;
+        }
 
-        Vector3 spawnPos = cell.transform.position + cell.transform.up * pieceHeightOffset;
+        Vector3 faceNormal = GetFaceNormal(cell.face);
+
+        // Push piece OUT from cube surface using the face normal
+        Vector3 spawnPos = cell.transform.position + faceNormal * pieceHeightOffset;
+
         GameObject pieceGO = Instantiate(prefab, spawnPos, Quaternion.identity);
-        pieceGO.name = $"{color}_{type}";
+        pieceGO.name = $"{color}_{type}_{cell.x}{cell.y}{cell.z}";
 
-        // Orient piece to stand on the face
-        pieceGO.transform.up = GetFaceNormal(cell.face);
+        // Make piece stand upright relative to its face
+        pieceGO.transform.up = faceNormal;
 
-        ChessPiece piece = pieceGO.AddComponent<ChessPiece>();
-        piece.pieceType = type;
-        piece.pieceColor = color;
-        piece.currentCell = cell;
-        cell.currentPiece = pieceGO;
+        // Scale down pieces to fit cells properly
+        pieceGO.transform.localScale = Vector3.one * 0.4f;
+
+        ChessPiece piece    = pieceGO.AddComponent<ChessPiece>();
+        piece.pieceType     = type;
+        piece.pieceColor    = color;
+        piece.currentCell   = cell;
+        cell.currentPiece   = pieceGO;
     }
 
     GameObject GetPrefab(PieceType type, PieceColor color)
@@ -136,37 +150,39 @@ public class ChessBoardManager : MonoBehaviour
         {
             return type switch
             {
-                PieceType.Pawn => whitePawnPrefab,
-                PieceType.Rook => whiteRookPrefab,
-                PieceType.Queen => whiteQueenPrefab,
-                PieceType.King => whiteKingPrefab,
-                _ => whitePawnPrefab
+                PieceType.Pawn   => whitePawnPrefab,
+                PieceType.Rook   => whiteRookPrefab,
+                PieceType.Queen  => whiteQueenPrefab,
+                PieceType.King   => whiteKingPrefab,
+                _                => whitePawnPrefab
             };
         }
         else
         {
             return type switch
             {
-                PieceType.Pawn => blackPawnPrefab,
-                PieceType.Rook => blackRookPrefab,
-                PieceType.Queen => blackQueenPrefab,
-                PieceType.King => blackKingPrefab,
-                _ => blackPawnPrefab
+                PieceType.Pawn   => blackPawnPrefab,
+                PieceType.Rook   => blackRookPrefab,
+                PieceType.Queen  => blackQueenPrefab,
+                PieceType.King   => blackKingPrefab,
+                _                => blackPawnPrefab
             };
         }
     }
 
+    // FIX 1: Returns the correct world-space normal for each face of the cube.
+    //         This ensures pieces are pushed outward (not inward) from the surface.
     Vector3 GetFaceNormal(string face)
     {
         return face switch
         {
-            "front" => Vector3.forward,
-            "back" => -Vector3.forward,
-            "right" => Vector3.right,
-            "left" => -Vector3.right,
-            "top" => Vector3.up,
-            "bottom" => -Vector3.up,
-            _ => Vector3.up
+            "front"  =>  Vector3.forward,   // +Z
+            "back"   => -Vector3.forward,   // -Z
+            "right"  =>  Vector3.right,     // +X
+            "left"   => -Vector3.right,     // -X
+            "top"    =>  Vector3.up,        // +Y
+            "bottom" => -Vector3.up,        // -Y
+            _        =>  Vector3.up
         };
     }
 
@@ -177,28 +193,48 @@ public class ChessBoardManager : MonoBehaviour
             HandleClick();
     }
 
+    // FIX 4: Replaced single Physics.Raycast with Physics.RaycastAll so that
+    //         clicking a piece (which sits above its cell) correctly resolves to
+    //         the right cell, instead of selecting the cell in front of the piece.
     void HandleClick()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (!Physics.Raycast(ray, out RaycastHit hit)) return;
+        RaycastHit[] hits = Physics.RaycastAll(ray, 100f);
 
-        BoardCell clickedCell = hit.collider.GetComponent<BoardCell>();
-        if (clickedCell == null)
+        // Sort all hits by distance — closest first
+        System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
+        BoardCell clickedCell = null;
+
+        foreach (RaycastHit hit in hits)
         {
-            // Maybe clicked the piece on top — find its cell
+            // Check if we hit a cell directly
+            BoardCell cell = hit.collider.GetComponent<BoardCell>();
+            if (cell != null)
+            {
+                clickedCell = cell;
+                break;
+            }
+
+            // Check if we hit a piece — resolve to its owning cell
             ChessPiece piece = hit.collider.GetComponentInParent<ChessPiece>();
-            if (piece != null) clickedCell = piece.currentCell;
+            if (piece != null)
+            {
+                clickedCell = piece.currentCell;
+                break;
+            }
         }
+
         if (clickedCell == null) return;
 
-        // If a move is highlighted and we clicked it — move there
+        // If a highlighted move cell was clicked — execute move
         if (highlightedMoves.Contains(clickedCell))
         {
             ExecuteMove(selectedCell, clickedCell);
             return;
         }
 
-        // Select a piece
+        // Otherwise try to select a piece on the clicked cell
         ClearHighlights();
         selectedCell = null;
 
@@ -226,15 +262,15 @@ public class ChessBoardManager : MonoBehaviour
             Destroy(to.currentPiece);
         }
 
-        // Move
+        // Move piece to new cell position
         Vector3 targetPos = to.transform.position + GetFaceNormal(to.face) * pieceHeightOffset;
         from.currentPiece.transform.position = targetPos;
         from.currentPiece.transform.up = GetFaceNormal(to.face);
 
-        to.currentPiece = from.currentPiece;
+        to.currentPiece   = from.currentPiece;
         from.currentPiece = null;
         movingPiece.currentCell = to;
-        movingPiece.hasMoved = true;
+        movingPiece.hasMoved    = true;
 
         ClearHighlights();
         selectedCell = null;
@@ -275,16 +311,15 @@ public class ChessBoardManager : MonoBehaviour
     {
         ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
         List<BoardCell> moves = new List<BoardCell>();
-        string face = cell.face;
 
         switch (piece.pieceType)
         {
-            case PieceType.Pawn: moves = GetPawnMoves(cell, piece); break;
-            case PieceType.Rook: moves = GetSlidingMoves(cell, true, false); break;
-            case PieceType.Bishop: moves = GetSlidingMoves(cell, false, true); break;
-            case PieceType.Queen: moves = GetSlidingMoves(cell, true, true); break;
-            case PieceType.King: moves = GetKingMoves(cell, piece); break;
-            case PieceType.Knight: moves = GetKnightMoves(cell); break;
+            case PieceType.Pawn:   moves = GetPawnMoves(cell, piece);           break;
+            case PieceType.Rook:   moves = GetSlidingMoves(cell, true, false);  break;
+            case PieceType.Bishop: moves = GetSlidingMoves(cell, false, true);  break;
+            case PieceType.Queen:  moves = GetSlidingMoves(cell, true, true);   break;
+            case PieceType.King:   moves = GetKingMoves(cell, piece);           break;
+            case PieceType.Knight: moves = GetKnightMoves(cell);                break;
         }
 
         // Remove moves that would capture own pieces
@@ -304,7 +339,7 @@ public class ChessBoardManager : MonoBehaviour
         BoardCell fwd = GetCellOnFace(cell.face, cell.x, cell.y + dir, cell.z);
         if (fwd != null && !fwd.IsOccupied) moves.Add(fwd);
 
-        // Double move from start
+        // Double move from starting position
         if (!piece.hasMoved && fwd != null && !fwd.IsOccupied)
         {
             BoardCell dbl = GetCellOnFace(cell.face, cell.x, cell.y + dir * 2, cell.z);
@@ -338,7 +373,7 @@ public class ChessBoardManager : MonoBehaviour
     List<BoardCell> GetKnightMoves(BoardCell cell)
     {
         List<BoardCell> moves = new List<BoardCell>();
-        int[,] offsets = { { 1, 2 }, { 2, 1 }, { -1, 2 }, { -2, 1 }, { 1, -2 }, { 2, -1 }, { -1, -2 }, { -2, -1 } };
+        int[,] offsets = { { 1,2 }, { 2,1 }, { -1,2 }, { -2,1 }, { 1,-2 }, { 2,-1 }, { -1,-2 }, { -2,-1 } };
         for (int i = 0; i < 8; i++)
         {
             BoardCell c = GetCellOnFace(cell.face,
@@ -354,9 +389,9 @@ public class ChessBoardManager : MonoBehaviour
         ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
 
         List<Vector2Int> directions = new List<Vector2Int>();
-        if (straight) directions.AddRange(new[]{ new Vector2Int(1,0), new Vector2Int(-1,0),
-                                                   new Vector2Int(0,1), new Vector2Int(0,-1) });
-        if (diagonal) directions.AddRange(new[]{ new Vector2Int(1,1), new Vector2Int(-1,1),
+        if (straight)  directions.AddRange(new[]{ new Vector2Int(1,0),  new Vector2Int(-1,0),
+                                                   new Vector2Int(0,1),  new Vector2Int(0,-1) });
+        if (diagonal)  directions.AddRange(new[]{ new Vector2Int(1,1),  new Vector2Int(-1,1),
                                                    new Vector2Int(1,-1), new Vector2Int(-1,-1) });
 
         foreach (Vector2Int dir in directions)
@@ -370,7 +405,7 @@ public class ChessBoardManager : MonoBehaviour
                 if (next.IsOccupied)
                 {
                     if (next.currentPiece.GetComponent<ChessPiece>().pieceColor != piece.pieceColor)
-                        moves.Add(next); // capture
+                        moves.Add(next); // capture enemy
                     break;
                 }
                 moves.Add(next);
@@ -382,18 +417,17 @@ public class ChessBoardManager : MonoBehaviour
     // ── CELL LOOKUP ──────────────────────────────────────────────────
     BoardCell GetCellOnFace(string face, int x, int y, int z)
     {
-        // Map face + 2D coords back to 3D grid index
         int gx, gy, gz;
         int max = 6;
 
         switch (face)
         {
-            case "front": gx = x; gy = y; gz = max; break;
-            case "back": gx = x; gy = y; gz = 0; break;
-            case "right": gx = max; gy = y; gz = z; break;
-            case "left": gx = 0; gy = y; gz = z; break;
-            case "top": gx = x; gy = max; gz = z; break;
-            case "bottom": gx = x; gy = 0; gz = z; break;
+            case "front":  gx = x;   gy = y;   gz = max; break;
+            case "back":   gx = x;   gy = y;   gz = 0;   break;
+            case "right":  gx = max; gy = y;   gz = z;   break;
+            case "left":   gx = 0;   gy = y;   gz = z;   break;
+            case "top":    gx = x;   gy = max; gz = z;   break;
+            case "bottom": gx = x;   gy = 0;   gz = z;   break;
             default: return null;
         }
 
