@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class ChessBoardManager : MonoBehaviour
 {
-
+    // ── AUDIO ────────────────────────────────────────────────────────
     [Header("Audio")]
-    public AudioSource clickSound;   
-    public AudioSource moveSound;   
+    public AudioSource clickSound;
+    public AudioSource moveSound;
 
+    // ── REFERENCES ───────────────────────────────────────────────────
     [Header("References")]
-    public GameObject boardParent; 
+    public GameObject boardParent;   // drag 3DChessBoard here
 
+    // ── PREFABS ──────────────────────────────────────────────────────
     [Header("Piece Prefabs - White")]
     public GameObject whitePawnPrefab;
     public GameObject whiteRookPrefab;
@@ -24,79 +26,104 @@ public class ChessBoardManager : MonoBehaviour
     public GameObject blackQueenPrefab;
     public GameObject blackKingPrefab;
 
+    // ── SETTINGS ─────────────────────────────────────────────────────
     [Header("Settings")]
-    public float pieceHeightOffset = 0.55f; 
+    public float pieceHeightOffset = 0.6f;
+    public float pieceScale = 0.4f;
+    public bool aiEnabled = true;
+
+    // ── INTERNAL STATE ────────────────────────────────────────────────
     private BoardCell[,,] cells = new BoardCell[7, 7, 7];
     private List<BoardCell> frontFaceCells = new List<BoardCell>();
-    private List<BoardCell> backFaceCells  = new List<BoardCell>();
+    private List<BoardCell> backFaceCells = new List<BoardCell>();
 
     private BoardCell selectedCell = null;
     private List<BoardCell> highlightedMoves = new List<BoardCell>();
-    private PieceColor currentTurn = PieceColor.White;
-
-    private Material highlightMaterial;
     private Dictionary<BoardCell, Material> originalMaterials = new Dictionary<BoardCell, Material>();
 
+    private PieceColor currentTurn = PieceColor.White;
     private bool gameOver = false;
-    private int turnCount = 0;
-    private int coreShiftInterval = 4; // shifts every 4 turns
-    private bool lowGravityMode = false;
-    public bool aiEnabled = true;
     private bool aiThinking = false;
 
+    // Core shift
+    private int turnCount = 0;
+    private int coreShiftInterval = 4;
+    private bool lowGravityMode = false;
+
+    // Highlight material
+    private Material highlightMaterial;
+
+    // ── LIFECYCLE ────────────────────────────────────────────────────
     void Start()
     {
         highlightMaterial = new Material(Shader.Find("Standard"));
-        highlightMaterial.color = new Color(0f, 1f, 0.5f, 0.6f);
+        highlightMaterial.color = new Color(0f, 1f, 0.5f, 0.8f);
 
         CollectCells();
         SpawnPieces();
     }
 
-
+    // ── CELL COLLECTION ──────────────────────────────────────────────
     void CollectCells()
     {
+        frontFaceCells.Clear();
+        backFaceCells.Clear();
+
         foreach (Transform child in boardParent.transform)
         {
             BoardCell cell = child.GetComponent<BoardCell>();
             if (cell == null) continue;
 
-            cells[cell.x, cell.y, cell.z] = cell;
+            int cx = cell.x, cy = cell.y, cz = cell.z;
+            if (cx < 0 || cx > 6 || cy < 0 || cy > 6 || cz < 0 || cz > 6) continue;
 
-            int boardSize = 6; 
-            if      (cell.z == boardSize) cell.face = "front";
-            else if (cell.z == 0)         cell.face = "back";
-            else if (cell.x == 0)         cell.face = "left";
-            else if (cell.x == boardSize) cell.face = "right";
-            else if (cell.y == boardSize) cell.face = "top";
-            else if (cell.y == 0)         cell.face = "bottom";
+            cells[cx, cy, cz] = cell;
+
+            // Assign face — z faces checked first, then x, then y
+            // Edge/corner cells get the FIRST matching face label
+            if (cz == 6) cell.face = "front";
+            else if (cz == 0) cell.face = "back";
+            else if (cx == 6) cell.face = "right";
+            else if (cx == 0) cell.face = "left";
+            else if (cy == 6) cell.face = "top";
+            else if (cy == 0) cell.face = "bottom";
+            else cell.face = "inner";   // hidden interior cell
 
             if (cell.face == "front") frontFaceCells.Add(cell);
-            if (cell.face == "back")  backFaceCells.Add(cell);
+            if (cell.face == "back") backFaceCells.Add(cell);
         }
+
+        Debug.Log($"[Board] Front: {frontFaceCells.Count} | Back: {backFaceCells.Count}");
     }
+
+    // ── PIECE SPAWNING ───────────────────────────────────────────────
+    // Pieces spawn at y=2 (back row) and y=3 (pawns) on both faces
+    // This avoids y=0/y=6 edge cells which have ambiguous normals
     void SpawnPieces()
     {
-{
-    
-    SpawnBackRow(frontFaceCells, PieceColor.White, rowY: 0);
-    SpawnPawnRow(frontFaceCells, PieceColor.White, rowY: 1);
+        // WHITE on front face — back row at y=2, pawns at y=3
+        SpawnBackRow(frontFaceCells, PieceColor.White, rowY: 2);
+        SpawnPawnRow(frontFaceCells, PieceColor.White, rowY: 3);
 
-    // BLACK on BACK face — mirrored: back row at y=6, pawns at y=5
-    SpawnBackRow(backFaceCells, PieceColor.Black, rowY: 6);
-    SpawnPawnRow(backFaceCells, PieceColor.Black, rowY: 5);
+        // BLACK on back face — back row at y=4, pawns at y=3
+        // y=4 is black's "home row", pawns at y=3 face each other
+        SpawnBackRow(backFaceCells, PieceColor.Black, rowY: 4);
+        SpawnPawnRow(backFaceCells, PieceColor.Black, rowY: 3);
 
-
-Debug.Log($"Back row for White: {frontFaceCells.FindAll(c => c.y == 0).Count} cells at y=0");
-Debug.Log($"Pawn row for White: {frontFaceCells.FindAll(c => c.y == 1).Count} cells at y=1");
-Debug.Log($"Back row for Black: {backFaceCells.FindAll(c => c.y == 6).Count} cells at y=6");
-Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cells at y=5");}
+        Debug.Log($"[Spawn] White back row: {frontFaceCells.FindAll(c => c.y == 2).Count} cells");
+        Debug.Log($"[Spawn] White pawns:    {frontFaceCells.FindAll(c => c.y == 3).Count} cells");
+        Debug.Log($"[Spawn] Black back row: {backFaceCells.FindAll(c => c.y == 4).Count} cells");
+        Debug.Log($"[Spawn] Black pawns:    {backFaceCells.FindAll(c => c.y == 3).Count} cells");
     }
+
     void SpawnBackRow(List<BoardCell> faceCells, PieceColor color, int rowY)
     {
         List<BoardCell> row = faceCells.FindAll(c => c.y == rowY);
         row.Sort((a, b) => a.x.CompareTo(b.x));
-        PieceType?[] layout = {
+
+        // Layout across 7 columns: Rook _ Queen King _ _ Rook
+        PieceType?[] layout =
+        {
             PieceType.Rook, null, PieceType.Queen,
             PieceType.King, null, null, PieceType.Rook
         };
@@ -111,118 +138,115 @@ Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cel
     void SpawnPawnRow(List<BoardCell> faceCells, PieceColor color, int rowY)
     {
         List<BoardCell> row = faceCells.FindAll(c => c.y == rowY);
+        row.Sort((a, b) => a.x.CompareTo(b.x));
         foreach (BoardCell cell in row)
             PlacePiece(PieceType.Pawn, color, cell);
     }
 
-   
     void PlacePiece(PieceType type, PieceColor color, BoardCell cell)
     {
         GameObject prefab = GetPrefab(type, color);
         if (prefab == null)
         {
-            Debug.LogWarning($"Missing prefab: {color} {type}");
+            Debug.LogWarning($"[Spawn] Missing prefab: {color} {type}");
             return;
         }
 
-        Vector3 faceNormal = GetFaceNormal(cell.face);
+        Vector3 outDir = GetOutwardDir(cell);
+        Vector3 spawnPos = cell.transform.position + outDir * pieceHeightOffset;
 
-        Vector3 spawnPos = cell.transform.position + faceNormal * pieceHeightOffset;
+        GameObject go = Instantiate(prefab, spawnPos, Quaternion.identity);
+        go.name = $"{color}_{type}_{cell.x}{cell.y}{cell.z}";
 
-        GameObject pieceGO = Instantiate(prefab, spawnPos, Quaternion.identity);
-        pieceGO.name = $"{color}_{type}_{cell.x}{cell.y}{cell.z}";
+        // Stand piece perpendicular to its face
+        go.transform.up = outDir;
+        go.transform.localScale = Vector3.one * pieceScale;
 
-        pieceGO.transform.up = faceNormal;
+        ChessPiece cp = go.AddComponent<ChessPiece>();
+        cp.pieceType = type;
+        cp.pieceColor = color;
+        cp.currentCell = cell;
+        cell.currentPiece = go;
+    }
 
-        pieceGO.transform.localScale = Vector3.one * 0.4f;
-
-        ChessPiece piece    = pieceGO.AddComponent<ChessPiece>();
-        piece.pieceType     = type;
-        piece.pieceColor    = color;
-        piece.currentCell   = cell;
-        cell.currentPiece   = pieceGO;
+    // ── FACE NORMALS ─────────────────────────────────────────────────
+    // Uses the cube's actual world transform so rotation doesn't break normals
+    Vector3 GetOutwardDir(BoardCell cell)
+    {
+        Transform t = boardParent.transform;
+        return cell.face switch
+        {
+            "front" => t.forward,
+            "back" => -t.forward,
+            "right" => t.right,
+            "left" => -t.right,
+            "top" => t.up,
+            "bottom" => -t.up,
+            _ => t.up
+        };
     }
 
     GameObject GetPrefab(PieceType type, PieceColor color)
     {
         if (color == PieceColor.White)
-        {
             return type switch
             {
-                PieceType.Pawn   => whitePawnPrefab,
-                PieceType.Rook   => whiteRookPrefab,
-                PieceType.Queen  => whiteQueenPrefab,
-                PieceType.King   => whiteKingPrefab,
-                _                => whitePawnPrefab
+                PieceType.Pawn => whitePawnPrefab,
+                PieceType.Rook => whiteRookPrefab,
+                PieceType.Queen => whiteQueenPrefab,
+                PieceType.King => whiteKingPrefab,
+                _ => whitePawnPrefab
             };
-        }
         else
-        {
             return type switch
             {
-                PieceType.Pawn   => blackPawnPrefab,
-                PieceType.Rook   => blackRookPrefab,
-                PieceType.Queen  => blackQueenPrefab,
-                PieceType.King   => blackKingPrefab,
-                _                => blackPawnPrefab
+                PieceType.Pawn => blackPawnPrefab,
+                PieceType.Rook => blackRookPrefab,
+                PieceType.Queen => blackQueenPrefab,
+                PieceType.King => blackKingPrefab,
+                _ => blackPawnPrefab
             };
-        }
-    }
-    
-    Vector3 GetFaceNormal(string face)
-    {
-        return face switch
-        {
-            "front"  =>  Vector3.forward,   // +Z
-            "back"   => -Vector3.forward,   // -Z
-            "right"  =>  Vector3.right,     // +X
-            "left"   => -Vector3.right,     // -X
-            "top"    =>  Vector3.up,        // +Y
-            "bottom" => -Vector3.up,        // -Y
-            _        =>  Vector3.up
-        };
     }
 
-    // Iinput & Mouse click  
+    // ── INPUT ────────────────────────────────────────────────────────
     void Update()
     {
+        if (gameOver) return;
+        if (aiThinking) return;   // block input while AI is thinking
+
         if (Input.GetMouseButtonDown(0))
             HandleClick();
     }
+
     void HandleClick()
     {
-        if (gameOver) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.RaycastAll(ray, 100f);
-
-        // Sort all hits by distance — closest first
         System.Array.Sort(hits, (a, b) => a.distance.CompareTo(b.distance));
+
         BoardCell clickedCell = null;
+
         foreach (RaycastHit hit in hits)
         {
-            // Check if we hit a cell directly
+            // Hit a board cell directly
             BoardCell cell = hit.collider.GetComponent<BoardCell>();
-            if (cell != null)
-            {
-                clickedCell = cell;
-                break;
-            }
+            if (cell != null) { clickedCell = cell; break; }
+
+            // Hit a chess piece — use its cell
             ChessPiece piece = hit.collider.GetComponentInParent<ChessPiece>();
-            if (piece != null)
-            {
-                clickedCell = piece.currentCell;
-                break;
-            }
+            if (piece != null) { clickedCell = piece.currentCell; break; }
         }
 
         if (clickedCell == null) return;
+
+        // Clicked a highlighted move target → execute move
         if (highlightedMoves.Contains(clickedCell))
         {
             ExecuteMove(selectedCell, clickedCell);
             return;
         }
 
-        // Otherwise try to select a piece on the clicked cell
+        // Otherwise try to select a piece
         ClearHighlights();
         selectedCell = null;
 
@@ -233,29 +257,35 @@ Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cel
             {
                 selectedCell = clickedCell;
                 HighlightMoves(clickedCell);
-                  clickSound?.Play();
+                clickSound?.Play();
             }
         }
     }
 
+    // ── MOVE EXECUTION ────────────────────────────────────────────────
     void ExecuteMove(BoardCell from, BoardCell to)
     {
+        if (from == null || to == null) return;
+
         ChessPiece movingPiece = from.currentPiece.GetComponent<ChessPiece>();
 
-        // Capture — destroy enemy piece
+        // Capture enemy piece
         if (to.IsOccupied)
         {
             ChessPiece captured = to.currentPiece.GetComponent<ChessPiece>();
-            Debug.Log($"Captured {captured.pieceColor} {captured.pieceType}!");
+            Debug.Log($"[Capture] {captured.pieceColor} {captured.pieceType} captured!");
             Destroy(to.currentPiece);
             to.currentPiece = null;
         }
 
-        // Move piece to new position
-        Vector3 targetPos = to.transform.position + GetFaceNormal(to.face) * pieceHeightOffset;
-        from.currentPiece.transform.position = targetPos;
-        from.currentPiece.transform.up = GetFaceNormal(to.face);
+        // Reposition piece on new cell
+        Vector3 outDir = GetOutwardDir(to);
+        Vector3 targetPos = to.transform.position + outDir * pieceHeightOffset;
 
+        from.currentPiece.transform.position = targetPos;
+        from.currentPiece.transform.up = outDir;
+
+        // Update references
         to.currentPiece = from.currentPiece;
         from.currentPiece = null;
         movingPiece.currentCell = to;
@@ -265,270 +295,32 @@ Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cel
         ClearHighlights();
         selectedCell = null;
 
-        // Check win condition after every move
+        // Check for win BEFORE switching turn
         CheckWinCondition();
+        if (gameOver) return;
+
+        // Core gravity shift
+        TriggerCoreShift();
 
         // Switch turn
-        currentTurn = currentTurn == PieceColor.White ? PieceColor.Black : PieceColor.White;
-        Debug.Log($"Turn: {currentTurn}");
+        currentTurn = (currentTurn == PieceColor.White) ? PieceColor.Black : PieceColor.White;
+        Debug.Log($"[Turn] Now: {currentTurn}");
 
-        // If it's now AI's turn, trigger AI
-        if (currentTurn == PieceColor.Black)
+        // Trigger AI if it's black's turn
+        if (currentTurn == PieceColor.Black && aiEnabled)
             StartCoroutine(AIMove());
-        TriggerCoreShift();
     }
 
-    void TriggerCoreShift()
-    {
-        turnCount++;
-        if (turnCount % coreShiftInterval != 0) return;
-
-        // Toggle between normal and low gravity
-        lowGravityMode = !lowGravityMode;
-
-        if (lowGravityMode)
-        {
-            Debug.Log("CORE SHIFT — Low Gravity Mode! Pawns can jump 3 squares!");
-            pieceHeightOffset = 1.2f; // pieces float higher visually
-        }
-        else
-        {
-            Debug.Log("CORE SHIFT — Normal Gravity restored!");
-            pieceHeightOffset = 0.55f;
-        }
-    }
-
-
-    void CheckWinCondition()
-    {
-        bool whiteKingAlive = false;
-        bool blackKingAlive = false;
-
-        // Search all cells for kings
-        for (int x = 0; x <= 6; x++)
-            for (int y = 0; y <= 6; y++)
-                for (int z = 0; z <= 6; z++)
-                {
-                    BoardCell cell = cells[x, y, z];
-                    if (cell == null || !cell.IsOccupied) continue;
-
-                    ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
-                    if (piece == null) continue;
-
-                    if (piece.pieceType == PieceType.King)
-                    {
-                        if (piece.pieceColor == PieceColor.White) whiteKingAlive = true;
-                        if (piece.pieceColor == PieceColor.Black) blackKingAlive = true;
-                    }
-                }
-
-        if (!blackKingAlive)
-        {
-            Debug.Log("WHITE WINS!");
-            ShowWinScreen("White");
-        }
-        else if (!whiteKingAlive)
-        {
-            Debug.Log("BLACK WINS!");
-            ShowWinScreen("Black");
-        }
-    }
-
-    IEnumerator AIMove()
-    {
-        if (gameOver) yield break;
-        if (!aiEnabled || gameOver) yield break;
-        if (aiThinking) yield break;
-
-        aiThinking = true;
-        Debug.Log("AI thinking...");
-
-        // Small delay so it feels natural
-        yield return new WaitForSeconds(0.8f);
-
-        // Get all black pieces
-        List<(BoardCell from, BoardCell to)> allMoves = new List<(BoardCell, BoardCell)>();
-
-        for (int x = 0; x <= 6; x++)
-            for (int y = 0; y <= 6; y++)
-                for (int z = 0; z <= 6; z++)
-                {
-                    BoardCell cell = cells[x, y, z];
-                    if (cell == null || !cell.IsOccupied) continue;
-
-                    ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
-                    if (piece == null || piece.pieceColor != PieceColor.Black) continue;
-
-                    List<BoardCell> moves = GetLegalMoves(cell);
-                    foreach (BoardCell move in moves)
-                        allMoves.Add((cell, move));
-                }
-
-        if (allMoves.Count == 0)
-        {
-            Debug.Log("AI has no moves — White wins!");
-            ShowWinScreen("White");
-            aiThinking = false;
-            yield break;
-        }
-
-        // Priority: capture moves first, otherwise random
-        var captureMoves = allMoves.FindAll(m => m.to.IsOccupied);
-
-        (BoardCell from, BoardCell to) chosenMove;
-
-        if (captureMoves.Count > 0)
-        {
-            // Prioritize capturing the King
-            var kingCapture = captureMoves.Find(m =>
-                m.to.currentPiece.GetComponent<ChessPiece>().pieceType == PieceType.King);
-
-            if (kingCapture.from != null)
-                chosenMove = kingCapture;
-            else
-                chosenMove = captureMoves[Random.Range(0, captureMoves.Count)];
-        }
-        else
-        {
-            chosenMove = allMoves[Random.Range(0, allMoves.Count)];
-        }
-
-        ExecuteMove(chosenMove.from, chosenMove.to);
-        aiThinking = false;
-    }
-
-
-    void ShowWinScreen(string winner)
-    {
-        // Stop the game
-        gameOver = true;
-        Debug.Log($"GAME OVER — {winner} wins!");
-        // You can hook up a UI panel here later
-    }
-
-    BoardCell GetWrappedCell(BoardCell fromCell, Vector2Int dir)
-    {
-        string newFace;
-        int newX, newY, newZ;
-
-        bool valid = TryWrapMove(
-            fromCell.face,
-            fromCell.x, fromCell.y, fromCell.z,
-            dir,
-            out newFace, out newX, out newY, out newZ
-        );
-
-        if (!valid) return null;
-        return GetCellOnFace(newFace, newX, newY, newZ);
-    }
-
-    // Replace your entire TryWrapMove method with this:
-    bool TryWrapMove(string fromFace, int x, int y, int z,
-                     Vector2Int dir,
-                     out string newFace, out int newX, out int newY, out int newZ)
-    {
-        int max = 6;
-        newFace = fromFace;
-        newX = x; newY = y; newZ = z;
-
-        // Compute stepped coords on the same face first
-        int sx = x + dir.x;
-        int sy = y + dir.y;
-
-        // Still within same face — no wrap needed
-        if (sx >= 0 && sx <= max && sy >= 0 && sy <= max)
-        {
-            newX = sx; newY = sy;
-            // newZ stays the same (face's fixed coord)
-            switch (fromFace)
-            {
-                case "front": newZ = max; break;
-                case "back": newZ = 0; break;
-                case "right": newX = max; newX = sx; break; // x is free on front/back
-            }
-            // Just let GetCellOnFace handle the fixed axis
-            newX = sx; newY = sy; newZ = z;
-            return true;
-        }
-
-        // --- FRONT face (z = max), local axes: x=x, y=y ---
-        if (fromFace == "front")
-        {
-            if (sy > max) { newFace = "top"; newX = x; newY = max; newZ = max - 1; return true; }
-            if (sy < 0) { newFace = "bottom"; newX = x; newY = 0; newZ = max - 1; return true; }
-            if (sx > max) { newFace = "right"; newX = max; newY = y; newZ = max - 1; return true; }
-            if (sx < 0) { newFace = "left"; newX = 0; newY = y; newZ = max - 1; return true; }
-        }
-
-        // --- BACK face (z = 0), local axes: x=x, y=y ---
-        if (fromFace == "back")
-        {
-            if (sy > max) { newFace = "top"; newX = x; newY = max; newZ = 1; return true; }
-            if (sy < 0) { newFace = "bottom"; newX = x; newY = 0; newZ = 1; return true; }
-            if (sx > max) { newFace = "right"; newX = max; newY = y; newZ = 1; return true; }
-            if (sx < 0) { newFace = "left"; newX = 0; newY = y; newZ = 1; return true; }
-        }
-
-        // --- TOP face (y = max), local axes: x=x, y=z ---
-        if (fromFace == "top")
-        {
-            // On top face, dir.y moves along Z axis
-            int sz = z + dir.y;
-            int stx = x + dir.x;
-            if (sz > max) { newFace = "back"; newX = x; newY = max - 1; newZ = 0; return true; }
-            if (sz < 0) { newFace = "front"; newX = x; newY = max - 1; newZ = max; return true; }
-            if (stx > max) { newFace = "right"; newX = max; newY = max; newZ = z; return true; }
-            if (stx < 0) { newFace = "left"; newX = 0; newY = max; newZ = z; return true; }
-        }
-
-        // --- BOTTOM face (y = 0), local axes: x=x, y=z ---
-        if (fromFace == "bottom")
-        {
-            int sz = z + dir.y;
-            int stx = x + dir.x;
-            if (sz > max) { newFace = "back"; newX = x; newY = 1; newZ = 0; return true; }
-            if (sz < 0) { newFace = "front"; newX = x; newY = 1; newZ = max; return true; }
-            if (stx > max) { newFace = "right"; newX = max; newY = 0; newZ = z; return true; }
-            if (stx < 0) { newFace = "left"; newX = 0; newY = 0; newZ = z; return true; }
-        }
-
-        // --- LEFT face (x = 0), local axes: y=y, x=z ---
-        if (fromFace == "left")
-        {
-            int sz = z + dir.x; // left/right movement on left face moves along Z
-            int sty = y + dir.y;
-            if (sty > max) { newFace = "top"; newX = 0; newY = max; newZ = z; return true; }
-            if (sty < 0) { newFace = "bottom"; newX = 0; newY = 0; newZ = z; return true; }
-            if (sz > max) { newFace = "front"; newX = 1; newY = y; newZ = max; return true; }
-            if (sz < 0) { newFace = "back"; newX = 1; newY = y; newZ = 0; return true; }
-        }
-
-        // --- RIGHT face (x = max), local axes: y=y, x=z ---
-        if (fromFace == "right")
-        {
-            int sz = z + dir.x;
-            int sty = y + dir.y;
-            if (sty > max) { newFace = "top"; newX = max; newY = max; newZ = z; return true; }
-            if (sty < 0) { newFace = "bottom"; newX = max; newY = 0; newZ = z; return true; }
-            if (sz > max) { newFace = "back"; newX = max - 1; newY = y; newZ = 0; return true; }
-            if (sz < 0) { newFace = "front"; newX = max - 1; newY = y; newZ = max; return true; }
-        }
-
-        return false;
-    }
-
-    // allowed move onli
+    // ── HIGHLIGHTING ──────────────────────────────────────────────────
     void HighlightMoves(BoardCell cell)
     {
         highlightedMoves = GetLegalMoves(cell);
         foreach (BoardCell move in highlightedMoves)
         {
             Renderer r = move.GetComponent<Renderer>();
-            if (r != null)
-            {
-                originalMaterials[move] = r.material;
-                r.material = highlightMaterial;
-            }
+            if (r == null) continue;
+            originalMaterials[move] = r.material;
+            r.material = highlightMaterial;
         }
     }
 
@@ -544,149 +336,404 @@ Debug.Log($"Pawn row for Black: {backFaceCells.FindAll(c => c.y == 5).Count} cel
         originalMaterials.Clear();
     }
 
+    // ── LEGAL MOVE CALCULATION ────────────────────────────────────────
     List<BoardCell> GetLegalMoves(BoardCell cell)
     {
+        if (!cell.IsOccupied) return new List<BoardCell>();
+
         ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
-        List<BoardCell> moves = new List<BoardCell>();
-
-        switch (piece.pieceType)
+        List<BoardCell> moves = piece.pieceType switch
         {
-            case PieceType.Pawn:   moves = GetPawnMoves(cell, piece);           break;
-            case PieceType.Rook:   moves = GetSlidingMoves(cell, true, false);  break;
-            case PieceType.Bishop: moves = GetSlidingMoves(cell, false, true);  break;
-            case PieceType.Queen:  moves = GetSlidingMoves(cell, true, true);   break;
-            case PieceType.King:   moves = GetKingMoves(cell, piece);           break;
-            case PieceType.Knight: moves = GetKnightMoves(cell);                break;
-        }
+            PieceType.Pawn => GetPawnMoves(cell, piece),
+            PieceType.Rook => GetSlidingMoves(cell, true, false),
+            PieceType.Bishop => GetSlidingMoves(cell, false, true),
+            PieceType.Queen => GetSlidingMoves(cell, true, true),
+            PieceType.King => GetKingMoves(cell),
+            PieceType.Knight => GetKnightMoves(cell),
+            _ => new List<BoardCell>()
+        };
 
-        // Remove moves that would capture own pieces
-        moves.RemoveAll(m => m.IsOccupied &&
+        // Remove moves that land on own pieces
+        moves.RemoveAll(m => m != null && m.IsOccupied &&
             m.currentPiece.GetComponent<ChessPiece>().pieceColor == piece.pieceColor);
 
         return moves;
     }
 
+    // PAWN
     List<BoardCell> GetPawnMoves(BoardCell cell, ChessPiece piece)
     {
         List<BoardCell> moves = new List<BoardCell>();
-        int dir = piece.pieceColor == PieceColor.White ? 1 : -1;
 
-        // Forward with wrap
+        // White moves +Y, Black moves -Y on their respective faces
+        int dir = (piece.pieceColor == PieceColor.White) ? 1 : -1;
+
+        // One step forward
         BoardCell fwd = GetWrappedCell(cell, new Vector2Int(0, dir));
         if (fwd != null && !fwd.IsOccupied)
         {
             moves.Add(fwd);
 
-            BoardCell dbl = null;
-
-            // Double move on first turn
+            // Two steps forward on first move
             if (!piece.hasMoved)
             {
-                dbl = GetWrappedCell(fwd, new Vector2Int(0, dir));
+                BoardCell dbl = GetWrappedCell(fwd, new Vector2Int(0, dir));
                 if (dbl != null && !dbl.IsOccupied)
+                {
                     moves.Add(dbl);
-            }
-            // Triple move in low gravity mode
-            if (lowGravityMode && !piece.hasMoved)
-            {
-                BoardCell triple = GetWrappedCell(dbl, new Vector2Int(0, dir));
-                if (triple != null && !triple.IsOccupied)
-                    moves.Add(triple);
-            }
 
+                    // Three steps in low gravity mode
+                    if (lowGravityMode)
+                    {
+                        BoardCell triple = GetWrappedCell(dbl, new Vector2Int(0, dir));
+                        if (triple != null && !triple.IsOccupied)
+                            moves.Add(triple);
+                    }
+                }
+            }
         }
 
-        // Diagonal captures with wrap
+        // Diagonal captures
         foreach (int dx in new[] { -1, 1 })
         {
             BoardCell diag = GetWrappedCell(cell, new Vector2Int(dx, dir));
-            if (diag != null && diag.IsOccupied &&
-                diag.currentPiece.GetComponent<ChessPiece>().pieceColor != piece.pieceColor)
-                moves.Add(diag);
+            if (diag != null && diag.IsOccupied)
+            {
+                ChessPiece target = diag.currentPiece.GetComponent<ChessPiece>();
+                if (target.pieceColor != piece.pieceColor)
+                    moves.Add(diag);
+            }
         }
 
         return moves;
     }
 
-
-    List<BoardCell> GetKingMoves(BoardCell cell, ChessPiece piece)
+    // KING
+    List<BoardCell> GetKingMoves(BoardCell cell)
     {
         List<BoardCell> moves = new List<BoardCell>();
         for (int dx = -1; dx <= 1; dx++)
             for (int dy = -1; dy <= 1; dy++)
             {
                 if (dx == 0 && dy == 0) continue;
-                BoardCell c = GetCellOnFace(cell.face, cell.x + dx, cell.y + dy, cell.z);
+                BoardCell c = GetWrappedCell(cell, new Vector2Int(dx, dy));
                 if (c != null) moves.Add(c);
             }
         return moves;
     }
 
+    // KNIGHT
     List<BoardCell> GetKnightMoves(BoardCell cell)
     {
         List<BoardCell> moves = new List<BoardCell>();
-        int[,] offsets = { { 1,2 }, { 2,1 }, { -1,2 }, { -2,1 }, { 1,-2 }, { 2,-1 }, { -1,-2 }, { -2,-1 } };
-        for (int i = 0; i < 8; i++)
+        Vector2Int[] offsets =
         {
-            BoardCell c = GetCellOnFace(cell.face,
-                cell.x + offsets[i, 0], cell.y + offsets[i, 1], cell.z);
+            new Vector2Int( 1, 2), new Vector2Int( 2, 1),
+            new Vector2Int(-1, 2), new Vector2Int(-2, 1),
+            new Vector2Int( 1,-2), new Vector2Int( 2,-1),
+            new Vector2Int(-1,-2), new Vector2Int(-2,-1)
+        };
+        foreach (Vector2Int off in offsets)
+        {
+            BoardCell c = GetWrappedCell(cell, off);
             if (c != null) moves.Add(c);
         }
         return moves;
     }
+
+    // ROOK / BISHOP / QUEEN
     List<BoardCell> GetSlidingMoves(BoardCell cell, bool straight, bool diagonal)
     {
         List<BoardCell> moves = new List<BoardCell>();
         ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
 
-        List<Vector2Int> directions = new List<Vector2Int>();
-        if (straight) directions.AddRange(new[]{
-        new Vector2Int(1,0), new Vector2Int(-1,0),
-        new Vector2Int(0,1), new Vector2Int(0,-1) });
-        if (diagonal) directions.AddRange(new[]{
-        new Vector2Int(1,1),  new Vector2Int(-1,1),
-        new Vector2Int(1,-1), new Vector2Int(-1,-1) });
+        List<Vector2Int> dirs = new List<Vector2Int>();
+        if (straight) dirs.AddRange(new[]
+        {
+            new Vector2Int( 1, 0), new Vector2Int(-1, 0),
+            new Vector2Int( 0, 1), new Vector2Int( 0,-1)
+        });
+        if (diagonal) dirs.AddRange(new[]
+        {
+            new Vector2Int( 1, 1), new Vector2Int(-1, 1),
+            new Vector2Int( 1,-1), new Vector2Int(-1,-1)
+        });
 
-        foreach (Vector2Int dir in directions)
+        foreach (Vector2Int dir in dirs)
         {
             BoardCell current = cell;
-            for (int step = 1; step < 42; step++) // 42 = full cube perimeter
+            for (int step = 0; step < 42; step++) // 42 covers full cube loop
             {
                 BoardCell next = GetWrappedCell(current, dir);
-                if (next == null) break;
-                if (next == cell) break; // looped back to start
+                if (next == null || next == cell) break; // null or looped back
 
                 if (next.IsOccupied)
                 {
+                    // Can capture enemy
                     if (next.currentPiece.GetComponent<ChessPiece>().pieceColor != piece.pieceColor)
                         moves.Add(next);
-                    break;
+                    break; // blocked either way
                 }
+
                 moves.Add(next);
-                current = next; // continue from new cell
+                current = next;
             }
         }
         return moves;
     }
 
-    // ── CELL LOOKUP ──────────────────────────────────────────────────
+    // ── WRAP-AROUND MOVEMENT ─────────────────────────────────────────
+    // GetWrappedCell: given a cell and a 2D direction, returns the next cell
+    // crossing face boundaries if needed
+    BoardCell GetWrappedCell(BoardCell fromCell, Vector2Int dir)
+    {
+        if (fromCell == null) return null;
+
+        bool valid = TryWrapMove(
+            fromCell.face,
+            fromCell.x, fromCell.y, fromCell.z,
+            dir,
+            out string newFace, out int newX, out int newY, out int newZ);
+
+        if (!valid) return null;
+        return GetCellOnFace(newFace, newX, newY, newZ);
+    }
+
+    // TryWrapMove: maps a direction step from one face to the correct 3D coordinate
+    // dir.x = horizontal movement on the face, dir.y = vertical movement on the face
+    bool TryWrapMove(string fromFace, int x, int y, int z,
+                     Vector2Int dir,
+                     out string newFace, out int newX, out int newY, out int newZ)
+    {
+        const int MAX = 6;
+        newFace = fromFace;
+        newX = x; newY = y; newZ = z;
+
+        int sx = x + dir.x;
+        int sy = y + dir.y;
+
+        switch (fromFace)
+        {
+            // ── FRONT face (z=6): local x→x, local y→y ──────────────
+            case "front":
+                if (sx >= 0 && sx <= MAX && sy >= 0 && sy <= MAX)
+                { newX = sx; newY = sy; newZ = MAX; return true; }
+
+                if (sy > MAX) { newFace = "top"; newX = x; newY = MAX; newZ = MAX - 1; return true; }
+                else if (sy < 0) { newFace = "bottom"; newX = x; newY = 0; newZ = MAX - 1; return true; }
+                else if (sx > MAX) { newFace = "right"; newX = MAX; newY = y; newZ = MAX - 1; return true; }
+                else if (sx < 0) { newFace = "left"; newX = 0; newY = y; newZ = MAX - 1; return true; }
+                break;
+
+            // ── BACK face (z=0): local x→x, local y→y ───────────────
+            case "back":
+                if (sx >= 0 && sx <= MAX && sy >= 0 && sy <= MAX)
+                { newX = sx; newY = sy; newZ = 0; return true; }
+
+                if (sy > MAX) { newFace = "top"; newX = x; newY = MAX; newZ = 1; return true; }
+                else if (sy < 0) { newFace = "bottom"; newX = x; newY = 0; newZ = 1; return true; }
+                else if (sx > MAX) { newFace = "right"; newX = MAX; newY = y; newZ = 1; return true; }
+                else if (sx < 0) { newFace = "left"; newX = 0; newY = y; newZ = 1; return true; }
+                break;
+
+            // ── TOP face (y=6): local x→x, local y→z ────────────────
+            case "top":
+                {
+                    int stx = x + dir.x;
+                    int stz = z + dir.y;   // vertical on top face moves along Z
+
+                    if (stx >= 0 && stx <= MAX && stz >= 0 && stz <= MAX)
+                    { newX = stx; newY = MAX; newZ = stz; return true; }
+
+                    if (stz < 0) { newFace = "front"; newX = x; newY = MAX - 1; newZ = MAX; return true; }
+                    else if (stz > MAX) { newFace = "back"; newX = x; newY = MAX - 1; newZ = 0; return true; }
+                    else if (stx > MAX) { newFace = "right"; newX = MAX; newY = MAX; newZ = z; return true; }
+                    else if (stx < 0) { newFace = "left"; newX = 0; newY = MAX; newZ = z; return true; }
+                    break;
+                }
+
+            // ── BOTTOM face (y=0): local x→x, local y→z ─────────────
+            case "bottom":
+                {
+                    int stx = x + dir.x;
+                    int stz = z + dir.y;
+
+                    if (stx >= 0 && stx <= MAX && stz >= 0 && stz <= MAX)
+                    { newX = stx; newY = 0; newZ = stz; return true; }
+
+                    if (stz < 0) { newFace = "front"; newX = x; newY = 1; newZ = MAX; return true; }
+                    else if (stz > MAX) { newFace = "back"; newX = x; newY = 1; newZ = 0; return true; }
+                    else if (stx > MAX) { newFace = "right"; newX = MAX; newY = 0; newZ = z; return true; }
+                    else if (stx < 0) { newFace = "left"; newX = 0; newY = 0; newZ = z; return true; }
+                    break;
+                }
+
+            // ── LEFT face (x=0): local x→z, local y→y ───────────────
+            case "left":
+                {
+                    int stz = z + dir.x;  // horizontal on left face moves along Z
+                    int sty = y + dir.y;
+
+                    if (stz >= 0 && stz <= MAX && sty >= 0 && sty <= MAX)
+                    { newX = 0; newY = sty; newZ = stz; return true; }
+
+                    if (sty > MAX) { newFace = "top"; newX = 0; newY = MAX; newZ = z; return true; }
+                    else if (sty < 0) { newFace = "bottom"; newX = 0; newY = 0; newZ = z; return true; }
+                    else if (stz > MAX) { newFace = "front"; newX = 1; newY = y; newZ = MAX; return true; }
+                    else if (stz < 0) { newFace = "back"; newX = 1; newY = y; newZ = 0; return true; }
+                    break;
+                }
+
+            // ── RIGHT face (x=6): local x→z, local y→y ──────────────
+            case "right":
+                {
+                    int stz = z + dir.x;
+                    int sty = y + dir.y;
+
+                    if (stz >= 0 && stz <= MAX && sty >= 0 && sty <= MAX)
+                    { newX = MAX; newY = sty; newZ = stz; return true; }
+
+                    if (sty > MAX) { newFace = "top"; newX = MAX; newY = MAX; newZ = z; return true; }
+                    else if (sty < 0) { newFace = "bottom"; newX = MAX; newY = 0; newZ = z; return true; }
+                    else if (stz > MAX) { newFace = "back"; newX = MAX - 1; newY = y; newZ = 0; return true; }
+                    else if (stz < 0) { newFace = "front"; newX = MAX - 1; newY = y; newZ = MAX; return true; }
+                    break;
+                }
+        }
+
+        return false;
+    }
+
+    // ── CELL LOOKUP ───────────────────────────────────────────────────
     BoardCell GetCellOnFace(string face, int x, int y, int z)
     {
+        const int MAX = 6;
         int gx, gy, gz;
-        int max = 6;
 
         switch (face)
         {
-            case "front":  gx = x;   gy = y;   gz = max; break;
-            case "back":   gx = x;   gy = y;   gz = 0;   break;
-            case "right":  gx = max; gy = y;   gz = z;   break;
-            case "left":   gx = 0;   gy = y;   gz = z;   break;
-            case "top":    gx = x;   gy = max; gz = z;   break;
-            case "bottom": gx = x;   gy = 0;   gz = z;   break;
+            case "front": gx = x; gy = y; gz = MAX; break;
+            case "back": gx = x; gy = y; gz = 0; break;
+            case "right": gx = MAX; gy = y; gz = z; break;
+            case "left": gx = 0; gy = y; gz = z; break;
+            case "top": gx = x; gy = MAX; gz = z; break;
+            case "bottom": gx = x; gy = 0; gz = z; break;
             default: return null;
         }
 
-        if (gx < 0 || gx > max || gy < 0 || gy > max || gz < 0 || gz > max) return null;
+        if (gx < 0 || gx > MAX || gy < 0 || gy > MAX || gz < 0 || gz > MAX) return null;
         return cells[gx, gy, gz];
+    }
+
+    // ── WIN CONDITION ─────────────────────────────────────────────────
+    void CheckWinCondition()
+    {
+        bool whiteKingAlive = false;
+        bool blackKingAlive = false;
+
+        for (int x = 0; x <= 6; x++)
+            for (int y = 0; y <= 6; y++)
+                for (int z = 0; z <= 6; z++)
+                {
+                    BoardCell cell = cells[x, y, z];
+                    if (cell == null || !cell.IsOccupied) continue;
+
+                    ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
+                    if (piece == null || piece.pieceType != PieceType.King) continue;
+
+                    if (piece.pieceColor == PieceColor.White) whiteKingAlive = true;
+                    if (piece.pieceColor == PieceColor.Black) blackKingAlive = true;
+                }
+
+        if (!blackKingAlive) { ShowWinScreen("White"); return; }
+        if (!whiteKingAlive) { ShowWinScreen("Black"); }
+    }
+
+    void ShowWinScreen(string winner)
+    {
+        gameOver = true;
+        Debug.Log($"[WIN] GAME OVER — {winner} wins!");
+        // Hook up your win UI panel here
+    }
+
+    // ── CORE SHIFT ────────────────────────────────────────────────────
+    void TriggerCoreShift()
+    {
+        turnCount++;
+        if (turnCount % coreShiftInterval != 0) return;
+
+        lowGravityMode = !lowGravityMode;
+
+        if (lowGravityMode)
+        {
+            pieceHeightOffset = 1.2f;
+            Debug.Log("[CORE SHIFT] Low Gravity — Pawns can jump 3 squares!");
+        }
+        else
+        {
+            pieceHeightOffset = 0.6f;
+            Debug.Log("[CORE SHIFT] Normal Gravity restored.");
+        }
+    }
+
+    // ── AI ────────────────────────────────────────────────────────────
+    IEnumerator AIMove()
+    {
+        if (gameOver || aiThinking) yield break;
+
+        aiThinking = true;
+        Debug.Log("[AI] Thinking...");
+        yield return new WaitForSeconds(0.8f);
+
+        if (gameOver) { aiThinking = false; yield break; }
+
+        // Collect all legal moves for black
+        var allMoves = new List<(BoardCell from, BoardCell to)>();
+
+        for (int x = 0; x <= 6; x++)
+            for (int y = 0; y <= 6; y++)
+                for (int z = 0; z <= 6; z++)
+                {
+                    BoardCell cell = cells[x, y, z];
+                    if (cell == null || !cell.IsOccupied) continue;
+
+                    ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
+                    if (piece == null || piece.pieceColor != PieceColor.Black) continue;
+
+                    foreach (BoardCell move in GetLegalMoves(cell))
+                        allMoves.Add((cell, move));
+                }
+
+        if (allMoves.Count == 0)
+        {
+            Debug.Log("[AI] No moves available — White wins!");
+            ShowWinScreen("White");
+            aiThinking = false;
+            yield break;
+        }
+
+        // Priority 1 — capture King
+        var kingCapture = allMoves.Find(m =>
+            m.to.IsOccupied &&
+            m.to.currentPiece.GetComponent<ChessPiece>().pieceType == PieceType.King);
+
+        // Priority 2 — any capture
+        var anyCapture = allMoves.FindAll(m => m.to.IsOccupied);
+
+        (BoardCell from, BoardCell to) chosen;
+
+        if (kingCapture.from != null)
+            chosen = kingCapture;
+        else if (anyCapture.Count > 0)
+            chosen = anyCapture[Random.Range(0, anyCapture.Count)];
+        else
+            chosen = allMoves[Random.Range(0, allMoves.Count)];
+
+        Debug.Log($"[AI] Moving {chosen.from.currentPiece.GetComponent<ChessPiece>().pieceType} " +
+                  $"from ({chosen.from.x},{chosen.from.y},{chosen.from.z}) " +
+                  $"to ({chosen.to.x},{chosen.to.y},{chosen.to.z})");
+
+        ExecuteMove(chosen.from, chosen.to);
+        aiThinking = false;
     }
 }
