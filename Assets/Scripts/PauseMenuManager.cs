@@ -60,6 +60,6 @@ public class PauseMenuManager : MonoBehaviour
     {
         // Restore time before switching scenes
         Time.timeScale = 1f;
-        SceneManager.LoadScene("StartScreen");
+        SceneManager.LoadScene("StartScene");
     }
 }
