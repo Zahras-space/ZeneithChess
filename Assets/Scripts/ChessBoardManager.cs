@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,6 +7,10 @@ public class ChessBoardManager : MonoBehaviour
 {
     [Header("Camera")]
     public OrbitalCamera cameraController;
+
+    [Header("Win Screen")]
+    public WinScreenUI winScreenUI;
+
 
     [Header("Audio")]
     public AudioSource clickSound;
@@ -31,7 +36,7 @@ public class ChessBoardManager : MonoBehaviour
     public GameObject blackKingPrefab;
 
     [Header("Settings")]
-    public float pieceHeightOffset = 0.3f;
+    public float pieceHeightOffset = 1.0f;
     public float pieceScale = 0.4f;
     public bool aiEnabled = true;
 
@@ -44,9 +49,15 @@ public class ChessBoardManager : MonoBehaviour
     private BoardCell[,,] cells = new BoardCell[7, 7, 7];
     private List<BoardCell> frontFaceCells = new List<BoardCell>();
     private List<BoardCell> backFaceCells = new List<BoardCell>();
+    private List<BoardCell> topFaceCells = new List<BoardCell>();
+    private List<BoardCell> rightFaceCells = new List<BoardCell>();
+    private List<BoardCell> leftFaceCells = new List<BoardCell>();
+    private List<BoardCell> bottomFaceCells = new List<BoardCell>();
     private BoardCell selectedCell = null;
     private List<BoardCell> highlightedMoves = new List<BoardCell>();
     private Dictionary<BoardCell, Material> originalMaterials = new Dictionary<BoardCell, Material>();
+
+    private HashSet<string> visiblePawnFaces = new HashSet<string>();
 
     private PieceColor currentTurn = PieceColor.White;
     private bool gameOver = false;
@@ -65,10 +76,8 @@ public class ChessBoardManager : MonoBehaviour
     void Start()
     {
         CollectCells();
+        visiblePawnFaces = DetermineVisibleFaces();
         SpawnPieces();
-
-        if (cameraController != null)
-            cameraController.ResetToWhite();
     }
 
     // ── CELL COLLECTION ──────────────────────────────────────────────
@@ -97,16 +106,25 @@ public class ChessBoardManager : MonoBehaviour
 
             if (cell.face == "front") frontFaceCells.Add(cell);
             if (cell.face == "back") backFaceCells.Add(cell);
+            if (cell.face == "top") topFaceCells.Add(cell);
+            if (cell.face == "right") rightFaceCells.Add(cell);
+            if (cell.face == "left") leftFaceCells.Add(cell);
+            if (cell.face == "bottom") bottomFaceCells.Add(cell);
         }
     }
+
+
 
     // ── PIECE SPAWNING ───────────────────────────────────────────────
     void SpawnPieces()
     {
-        SpawnBackRow(frontFaceCells, PieceColor.White, rowY: 2);
-        SpawnPawnRow(frontFaceCells, PieceColor.White, rowY: 3);
-        SpawnBackRow(backFaceCells, PieceColor.Black, rowY: 4);
-        SpawnPawnRow(backFaceCells, PieceColor.Black, rowY: 3);
+        SpawnFaceBackRow(topFaceCells, PieceColor.White, "top", rowLine: 5);
+        SpawnFacePawnRow(topFaceCells, PieceColor.White, "top", rowLine: 4);
+
+        string blackFace = ChooseVisibleSideFace();
+        List<BoardCell> blackFaceCells = GetFaceCells(blackFace);
+        SpawnFaceBackRow(blackFaceCells, PieceColor.Black, blackFace, rowLine: 5);
+        SpawnFacePawnRow(blackFaceCells, PieceColor.Black, blackFace, rowLine: 4);
     }
 
     void SpawnBackRow(List<BoardCell> faceCells, PieceColor color, int rowY)
@@ -132,6 +150,118 @@ public class ChessBoardManager : MonoBehaviour
             PlacePiece(PieceType.Pawn, color, cell);
     }
 
+    void SpawnFaceBackRow(List<BoardCell> faceCells, PieceColor color, string faceName, int rowLine)
+    {
+        List<BoardCell> row = GetFaceRow(faceCells, faceName, rowLine);
+
+        PieceType?[] layout = {
+            PieceType.Rook, null, PieceType.Queen,
+            PieceType.King, null, null, PieceType.Rook
+        };
+
+        for (int i = 0; i < row.Count && i < layout.Length; i++)
+            if (layout[i].HasValue)
+                PlacePiece(layout[i].Value, color, row[i]);
+    }
+
+    void SpawnFacePawnRow(List<BoardCell> faceCells, PieceColor color, string faceName, int rowLine)
+    {
+        List<BoardCell> row = GetFaceRow(faceCells, faceName, rowLine);
+        foreach (BoardCell cell in row)
+            PlacePiece(PieceType.Pawn, color, cell);
+    }
+
+    List<BoardCell> GetFaceRow(List<BoardCell> faceCells, string faceName, int rowLine)
+    {
+        List<BoardCell> row = faceName switch
+        {
+            "top" => faceCells.FindAll(c => c.z == rowLine),
+            "bottom" => faceCells.FindAll(c => c.z == rowLine),
+            "left" => faceCells.FindAll(c => c.z == rowLine),
+            "right" => faceCells.FindAll(c => c.z == rowLine),
+            "front" => faceCells.FindAll(c => c.y == rowLine),
+            "back" => faceCells.FindAll(c => c.y == rowLine),
+            _ => new List<BoardCell>()
+        };
+
+        row.Sort(faceName switch
+        {
+            "top" or "bottom" or "front" or "back" => (Comparison<BoardCell>)((a, b) => a.x.CompareTo(b.x)),
+            "left" or "right" => (Comparison<BoardCell>)((a, b) => a.y.CompareTo(b.y)),
+            _ => (Comparison<BoardCell>)((a, b) => a.x.CompareTo(b.x))
+        });
+
+        return row;
+    }
+
+    List<BoardCell> GetFaceCells(string faceName)
+    {
+        return faceName switch
+        {
+            "front" => frontFaceCells,
+            "back" => backFaceCells,
+            "top" => topFaceCells,
+            "right" => rightFaceCells,
+            "left" => leftFaceCells,
+            "bottom" => bottomFaceCells,
+            _ => rightFaceCells
+        };
+    }
+
+    string ChooseVisibleSideFace()
+    {
+        Dictionary<string, float> scores = DetermineFaceScores();
+        string[] sideFaces = { "front", "right", "left", "back" };
+
+        string bestFace = "right";
+        float bestScore = float.MinValue;
+
+        foreach (string face in sideFaces)
+        {
+            if (!scores.TryGetValue(face, out float score)) continue;
+            if (score > bestScore)
+            {
+                bestScore = score;
+                bestFace = face;
+            }
+        }
+
+        return bestFace;
+    }
+
+    HashSet<string> DetermineVisibleFaces()
+    {
+        Dictionary<string, float> scores = DetermineFaceScores();
+        HashSet<string> faces = new HashSet<string>();
+        foreach (var pair in scores)
+            if (pair.Value > 0f)
+                faces.Add(pair.Key);
+        return faces;
+    }
+
+    Dictionary<string, float> DetermineFaceScores()
+    {
+        Vector3 cameraPosition = Camera.main != null ? Camera.main.transform.position : (cameraController != null ? cameraController.transform.position : Vector3.zero);
+        Vector3 center = boardParent.transform.position;
+        Vector3 viewDir = (cameraPosition - center).normalized;
+
+        var normals = new Dictionary<string, Vector3>
+        {
+            { "front", boardParent.transform.forward },
+            { "back", -boardParent.transform.forward },
+            { "right", boardParent.transform.right },
+            { "left", -boardParent.transform.right },
+            { "top", boardParent.transform.up },
+            { "bottom", -boardParent.transform.up }
+        };
+
+        var scores = new Dictionary<string, float>();
+        foreach (var pair in normals)
+            scores[pair.Key] = Vector3.Dot(pair.Value, viewDir);
+
+        return scores;
+    }
+
     void PlacePiece(PieceType type, PieceColor color, BoardCell cell)
     {
         GameObject prefab = GetPrefab(type, color);
@@ -144,7 +274,7 @@ public class ChessBoardManager : MonoBehaviour
         go.transform.up = outDir;
         go.transform.localScale = Vector3.one * pieceScale;
 
-        Vector3 spawnPos = cell.transform.position + outDir * GetPiecePlacementOffset(go, outDir);
+        Vector3 spawnPos = cell.transform.position + outDir * GetPiecePlacementOffset(go, outDir, type);
         go.transform.position = spawnPos;
 
         ChessPiece cp = go.AddComponent<ChessPiece>();
@@ -170,22 +300,9 @@ public class ChessBoardManager : MonoBehaviour
         };
     }
 
-    float GetPiecePlacementOffset(GameObject piece, Vector3 outDir)
+    float GetPiecePlacementOffset(GameObject piece, Vector3 outDir, PieceType type)
     {
-        if (piece == null) return pieceHeightOffset;
-
-        Renderer[] renderers = piece.GetComponentsInChildren<Renderer>();
-        if (renderers == null || renderers.Length == 0) return pieceHeightOffset;
-
-        Bounds bounds = new Bounds(renderers[0].bounds.center, Vector3.zero);
-        foreach (Renderer r in renderers)
-            bounds.Encapsulate(r.bounds);
-
-        float extentAlongDir = Mathf.Abs(outDir.x) * bounds.extents.x
-                             + Mathf.Abs(outDir.y) * bounds.extents.y
-                             + Mathf.Abs(outDir.z) * bounds.extents.z;
-
-        return pieceHeightOffset + extentAlongDir;
+        return pieceHeightOffset;
     }
 
     GameObject GetPrefab(PieceType type, PieceColor color)
@@ -262,8 +379,7 @@ public class ChessBoardManager : MonoBehaviour
     // ── CAMERA ───────────────────────────────────────────────────────
     void SwitchCameraToCurrentTurn()
     {
-        if (cameraController == null) return;
-        cameraController.SnapToFace(currentTurn == PieceColor.White ? "front" : "back");
+        // Keep the camera fixed; do not rotate to a new face during turns.
     }
 
     // ── MOVE EXECUTION ────────────────────────────────────────────────
@@ -293,7 +409,7 @@ public class ChessBoardManager : MonoBehaviour
         simpleLogger?.LogMove(movingPiece.pieceColor, friendlyMoveText, wasCapture);
 
         Vector3 outDir = GetOutwardDir(to);
-        Vector3 targetPos = to.transform.position + outDir * GetPiecePlacementOffset(from.currentPiece, outDir);
+        Vector3 targetPos = to.transform.position + outDir * GetPiecePlacementOffset(from.currentPiece, outDir, movingPiece.pieceType);
         Quaternion targetRot = Quaternion.FromToRotation(Vector3.up, outDir);
 
         // Update board references immediately so logic stays correct
@@ -494,7 +610,7 @@ public class ChessBoardManager : MonoBehaviour
         Vector3 outDir = GetOutwardDir(cell);
         selectionIndicator.transform.position =
             cell.transform.position + outDir *
-            (GetPiecePlacementOffset(cell.currentPiece, outDir) + 0.4f);
+            (GetPiecePlacementOffset(cell.currentPiece, outDir, cell.currentPiece.GetComponent<ChessPiece>().pieceType) + 0.4f);
 
         selectionIndicator.SetActive(true);
     }
@@ -592,6 +708,7 @@ public class ChessBoardManager : MonoBehaviour
             }
         }
 
+        moves.RemoveAll(m => m == null || !visiblePawnFaces.Contains(m.face));
         return moves;
     }
 
@@ -813,6 +930,8 @@ public class ChessBoardManager : MonoBehaviour
     {
         gameOver = true;
         Debug.Log($"[WIN] GAME OVER — {winner} wins!");
+        winScreenUI?.ShowWinner(winner);
+
     }
 
     // ── CORE SHIFT ────────────────────────────────────────────────────
@@ -836,8 +955,9 @@ public class ChessBoardManager : MonoBehaviour
                     if (cell != null && cell.IsOccupied)
                     {
                         Vector3 outDir = GetOutwardDir(cell);
+                        var pieceComp = cell.currentPiece.GetComponent<ChessPiece>();
                         cell.currentPiece.transform.position =
-                            cell.transform.position + outDir * GetPiecePlacementOffset(cell.currentPiece, outDir);
+                            cell.transform.position + outDir * GetPiecePlacementOffset(cell.currentPiece, outDir, pieceComp != null ? pieceComp.pieceType : PieceType.Pawn);
                     }
                 }
     }
@@ -885,9 +1005,9 @@ public class ChessBoardManager : MonoBehaviour
         if (kingCapture.from != null)
             chosen = kingCapture;
         else if (anyCapture.Count > 0)
-            chosen = anyCapture[Random.Range(0, anyCapture.Count)];
+            chosen = anyCapture[UnityEngine.Random.Range(0, anyCapture.Count)];
         else
-            chosen = allMoves[Random.Range(0, allMoves.Count)];
+            chosen = allMoves[UnityEngine.Random.Range(0, allMoves.Count)];
 
         ChessPiece aiPiece = chosen.from.currentPiece.GetComponent<ChessPiece>();
         Debug.Log($"[AI] {aiPiece.pieceType} ({chosen.from.x},{chosen.from.y},{chosen.from.z}) → ({chosen.to.x},{chosen.to.y},{chosen.to.z})");
