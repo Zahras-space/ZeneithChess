@@ -1,2 +1,20 @@
 fileFormatVersion: 2
 guid: e2b01634824a6fb49946e8f507a3af6f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - whiteContent: {instanceID: 0}
+  - whiteScrollRect: {instanceID: 0}
+  - whitePawnIcon: {instanceID: 0}
+  - blackContent: {instanceID: 0}
+  - blackScrollRect: {instanceID: 0}
+  - blackPawnIcon: {instanceID: 0}
+  - moveEntryPrefab: {instanceID: 0}
+  - whitePawnSprite: {fileID: 21300000, guid: c33bac7a6ba88d6419a8a30bb20f3039, type: 3}
+  - blackPawnSprite: {fileID: 21300000, guid: 40fb872e4d28451499738f218e6ea034, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

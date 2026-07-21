@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChessBoardManager : MonoBehaviour
 {
     [Header("Camera")]
-    public OrbitalCamera cameraController; // Updated to reference OrbitalCamera directly
+    public OrbitalCamera cameraController;
 
     [Header("Audio")]
     public AudioSource clickSound;
@@ -13,6 +13,7 @@ public class ChessBoardManager : MonoBehaviour
 
     [Header("HUD")]
     public MoveLogUI moveLogUI;
+    public SimpleMoveLogger simpleLogger;
 
     [Header("References")]
     public GameObject boardParent;
@@ -34,10 +35,15 @@ public class ChessBoardManager : MonoBehaviour
     public float pieceScale = 0.4f;
     public bool aiEnabled = true;
 
+    [Header("Movement Animation")]
+    public float moveDuration = 0.4f;
+    public float arcHeight = 1.5f;
+    public float bounceDuration = 0.25f;
+    public float bounceHeight = 0.3f;
+
     private BoardCell[,,] cells = new BoardCell[7, 7, 7];
     private List<BoardCell> frontFaceCells = new List<BoardCell>();
     private List<BoardCell> backFaceCells = new List<BoardCell>();
-
     private BoardCell selectedCell = null;
     private List<BoardCell> highlightedMoves = new List<BoardCell>();
     private Dictionary<BoardCell, Material> originalMaterials = new Dictionary<BoardCell, Material>();
@@ -45,6 +51,7 @@ public class ChessBoardManager : MonoBehaviour
     private PieceColor currentTurn = PieceColor.White;
     private bool gameOver = false;
     private bool aiThinking = false;
+    private bool isAnimating = false;
 
     private int turnCount = 0;
     private int coreShiftInterval = 4;
@@ -52,18 +59,19 @@ public class ChessBoardManager : MonoBehaviour
 
     public Material highlightMaterial;
 
+    private GameObject selectionIndicator;
+
+    // ── LIFECYCLE ────────────────────────────────────────────────────
     void Start()
     {
         CollectCells();
         SpawnPieces();
 
-        // Explicitly initialize the camera settings safely on frame 1
         if (cameraController != null)
-        {
             cameraController.ResetToWhite();
-        }
     }
 
+    // ── CELL COLLECTION ──────────────────────────────────────────────
     void CollectCells()
     {
         frontFaceCells.Clear();
@@ -92,6 +100,7 @@ public class ChessBoardManager : MonoBehaviour
         }
     }
 
+    // ── PIECE SPAWNING ───────────────────────────────────────────────
     void SpawnPieces()
     {
         SpawnBackRow(frontFaceCells, PieceColor.White, rowY: 2);
@@ -105,13 +114,14 @@ public class ChessBoardManager : MonoBehaviour
         List<BoardCell> row = faceCells.FindAll(c => c.y == rowY);
         row.Sort((a, b) => a.x.CompareTo(b.x));
 
-        PieceType?[] layout = { PieceType.Rook, null, PieceType.Queen, PieceType.King, null, null, PieceType.Rook };
+        PieceType?[] layout = {
+            PieceType.Rook, null, PieceType.Queen,
+            PieceType.King, null, null, PieceType.Rook
+        };
 
         for (int i = 0; i < row.Count && i < layout.Length; i++)
-        {
             if (layout[i].HasValue)
                 PlacePiece(layout[i].Value, color, row[i]);
-        }
     }
 
     void SpawnPawnRow(List<BoardCell> faceCells, PieceColor color, int rowY)
@@ -144,6 +154,7 @@ public class ChessBoardManager : MonoBehaviour
         cell.currentPiece = go;
     }
 
+    // ── OUTWARD DIRECTION ─────────────────────────────────────────────
     Vector3 GetOutwardDir(BoardCell cell)
     {
         Transform t = boardParent.transform;
@@ -167,12 +178,12 @@ public class ChessBoardManager : MonoBehaviour
         if (renderers == null || renderers.Length == 0) return pieceHeightOffset;
 
         Bounds bounds = new Bounds(renderers[0].bounds.center, Vector3.zero);
-        foreach (Renderer renderer in renderers)
-            bounds.Encapsulate(renderer.bounds);
+        foreach (Renderer r in renderers)
+            bounds.Encapsulate(r.bounds);
 
         float extentAlongDir = Mathf.Abs(outDir.x) * bounds.extents.x
-            + Mathf.Abs(outDir.y) * bounds.extents.y
-            + Mathf.Abs(outDir.z) * bounds.extents.z;
+                             + Mathf.Abs(outDir.y) * bounds.extents.y
+                             + Mathf.Abs(outDir.z) * bounds.extents.z;
 
         return pieceHeightOffset + extentAlongDir;
     }
@@ -180,7 +191,6 @@ public class ChessBoardManager : MonoBehaviour
     GameObject GetPrefab(PieceType type, PieceColor color)
     {
         if (color == PieceColor.White)
-        {
             return type switch
             {
                 PieceType.Rook => whiteRookPrefab,
@@ -188,9 +198,7 @@ public class ChessBoardManager : MonoBehaviour
                 PieceType.King => whiteKingPrefab,
                 _ => whitePawnPrefab
             };
-        }
         else
-        {
             return type switch
             {
                 PieceType.Rook => blackRookPrefab,
@@ -198,13 +206,12 @@ public class ChessBoardManager : MonoBehaviour
                 PieceType.King => blackKingPrefab,
                 _ => blackPawnPrefab
             };
-        }
     }
 
+    // ── INPUT ─────────────────────────────────────────────────────────
     void Update()
     {
-        if (gameOver || aiThinking) return;
-
+        if (gameOver || aiThinking || isAnimating) return;
         if (Input.GetMouseButtonDown(0))
             HandleClick();
     }
@@ -235,6 +242,7 @@ public class ChessBoardManager : MonoBehaviour
         }
 
         ClearHighlights();
+
         selectedCell = null;
 
         if (clickedCell.IsOccupied)
@@ -243,8 +251,7 @@ public class ChessBoardManager : MonoBehaviour
             if (piece != null && piece.pieceColor == currentTurn)
             {
                 selectedCell = clickedCell;
-                ChessPiece selectedPiece = clickedCell.currentPiece.GetComponent<ChessPiece>();
-                Debug.Log($"[Select] {selectedPiece.pieceColor} {selectedPiece.pieceType} selected at ({clickedCell.x},{clickedCell.y},{clickedCell.z})");
+                Debug.Log($"[Select] {piece.pieceColor} {piece.pieceType} at ({clickedCell.x},{clickedCell.y},{clickedCell.z})");
                 HighlightMoves(clickedCell);
                 Debug.Log($"[Moves] {highlightedMoves.Count} legal moves available.");
                 clickSound?.Play();
@@ -252,67 +259,253 @@ public class ChessBoardManager : MonoBehaviour
         }
     }
 
+    // ── CAMERA ───────────────────────────────────────────────────────
     void SwitchCameraToCurrentTurn()
     {
         if (cameraController == null) return;
         cameraController.SnapToFace(currentTurn == PieceColor.White ? "front" : "back");
     }
 
+    // ── MOVE EXECUTION ────────────────────────────────────────────────
     void ExecuteMove(BoardCell from, BoardCell to)
     {
         if (from == null || to == null) return;
-  ChessPiece movingPiece = from.currentPiece.GetComponent<ChessPiece>();
-    bool wasCapture = to.IsOccupied;
-    string capturedInfo = "";
 
-    if (wasCapture)
-    {
-        ChessPiece captured = to.currentPiece.GetComponent<ChessPiece>();
-        capturedInfo = $" (captures {captured.pieceColor} {captured.pieceType})";
-        Debug.Log($"[Capture] {captured.pieceColor} {captured.pieceType} captured!");
-        Destroy(to.currentPiece);
-        to.currentPiece = null;
-    }
+        ChessPiece movingPiece = from.currentPiece.GetComponent<ChessPiece>();
+        bool wasCapture = to.IsOccupied;
+        string capturedInfo = "";
+        GameObject capturedPieceObj = to.currentPiece;
 
-    string moveText = $"{movingPiece.pieceType} ({from.x},{from.y},{from.z}) → ({to.x},{to.y},{to.z}){capturedInfo}";
-    moveLogUI?.LogMove(movingPiece.pieceColor, moveText, wasCapture);
-
-        if (to.IsOccupied)
+        if (wasCapture)
         {
             ChessPiece captured = to.currentPiece.GetComponent<ChessPiece>();
+            capturedInfo = $" (captures {captured.pieceColor} {captured.pieceType})";
             Debug.Log($"[Capture] {captured.pieceColor} {captured.pieceType} captured!");
-            Destroy(to.currentPiece);
-            to.currentPiece = null;     
+            StartCoroutine(CaptureEffect(to.currentPiece, GetOutwardDir(to)));
+            to.currentPiece = null;
         }
+
+        string moveText = $"{movingPiece.pieceType} ({from.x},{from.y},{from.z}) → ({to.x},{to.y},{to.z}){capturedInfo}";
+        moveLogUI?.LogMove(movingPiece.pieceColor, moveText, wasCapture);
+
+        // Friendly, player-readable version of the same move, sent to the simple on-screen logger
+        string friendlyMoveText = BuildFriendlyMoveText(movingPiece, from, to, wasCapture, capturedPieceObj);
+        simpleLogger?.LogMove(movingPiece.pieceColor, friendlyMoveText, wasCapture);
 
         Vector3 outDir = GetOutwardDir(to);
         Vector3 targetPos = to.transform.position + outDir * GetPiecePlacementOffset(from.currentPiece, outDir);
+        Quaternion targetRot = Quaternion.FromToRotation(Vector3.up, outDir);
 
-        from.currentPiece.transform.position = targetPos;
-        from.currentPiece.transform.up = outDir;
-
+        // Update board references immediately so logic stays correct
         to.currentPiece = from.currentPiece;
         from.currentPiece = null;
         movingPiece.currentCell = to;
         movingPiece.hasMoved = true;
-       // bool wasCapture = to.IsOccupied; 
+
         moveSound?.Play();
         ClearHighlights();
         selectedCell = null;
 
-        CheckWinCondition();
-        if (gameOver) return;
+        // Animate — all post-move logic runs in callback after animation
+        StartCoroutine(AnimateMoveSequence(to.currentPiece, targetPos, targetRot, outDir, () =>
+        {
+            CheckWinCondition();
+            if (gameOver) return;
 
-        TriggerCoreShift();
+            TriggerCoreShift();
 
-        currentTurn = (currentTurn == PieceColor.White) ? PieceColor.Black : PieceColor.White;
-        Debug.Log($"[Turn] {currentTurn}'s turn");
-        SwitchCameraToCurrentTurn();
+            currentTurn = (currentTurn == PieceColor.White) ? PieceColor.Black : PieceColor.White;
+            Debug.Log($"[Turn] {currentTurn}'s turn");
+            simpleLogger?.LogTurnBanner(currentTurn);
+            SwitchCameraToCurrentTurn();
 
-        if (currentTurn == PieceColor.Black && aiEnabled)
-            StartCoroutine(AIMove());
+            if (currentTurn == PieceColor.Black && aiEnabled)
+                StartCoroutine(AIMove());
+        }));
     }
 
+    // ── FRIENDLY MOVE TEXT ───────────────────────────────────────────
+    string BuildFriendlyMoveText(ChessPiece piece, BoardCell from, BoardCell to, bool wasCapture, GameObject capturedPieceObj)
+    {
+        string pieceName = FormatPieceName(piece.pieceType);
+        string fromFace = FormatFaceName(from.face);
+        string toFace = FormatFaceName(to.face);
+
+        string location = (from.face == to.face)
+            ? $"on the {toFace} face"
+            : $"from {fromFace} to {toFace}";
+
+        if (wasCapture)
+        {
+            ChessPiece captured = capturedPieceObj != null ? capturedPieceObj.GetComponent<ChessPiece>() : null;
+            string capturedName = captured != null ? FormatPieceName(captured.pieceType) : "a piece";
+            return $"{pieceName} captures {capturedName} ({location})";
+        }
+
+        return $"{pieceName} moves {location}";
+    }
+
+    string FormatPieceName(PieceType type)
+    {
+        return type switch
+        {
+            PieceType.Pawn => "Pawn",
+            PieceType.Rook => "Rook",
+            PieceType.Knight => "Knight",
+            PieceType.Bishop => "Bishop",
+            PieceType.Queen => "Queen",
+            PieceType.King => "King",
+            _ => type.ToString()
+        };
+    }
+
+    string FormatFaceName(string face)
+    {
+        return face switch
+        {
+            "front" => "Front",
+            "back" => "Back",
+            "left" => "Left",
+            "right" => "Right",
+            "top" => "Top",
+            "bottom" => "Bottom",
+            _ => "Center"
+        };
+    }
+
+    // ── MOVEMENT ANIMATIONS ───────────────────────────────────────────
+
+    // Master sequence: arc move → bounce → callback
+    IEnumerator AnimateMoveSequence(GameObject piece, Vector3 targetPos,
+                                    Quaternion targetRot, Vector3 outDir,
+                                    System.Action onComplete)
+    {
+        isAnimating = true;
+
+        TrailRenderer trail = AddTrail(piece);
+        yield return StartCoroutine(AnimateMove(piece, targetPos, targetRot));
+        if (trail != null) trail.enabled = false;
+
+        yield return StartCoroutine(BounceEffect(piece, targetPos, outDir));
+
+        isAnimating = false;
+        onComplete?.Invoke();
+    }
+
+    // Arc movement
+    IEnumerator AnimateMove(GameObject piece, Vector3 targetPos,
+                             Quaternion targetRot)
+    {
+        Vector3 startPos = piece.transform.position;
+        Quaternion startRot = piece.transform.rotation;
+        Vector3 upDir = piece.transform.up;
+        float t = 0f;
+
+        while (t < 1f)
+        {
+            t += Time.deltaTime / moveDuration;
+            float smooth = Mathf.SmoothStep(0f, 1f, t);
+
+            Vector3 pos = Vector3.Lerp(startPos, targetPos, smooth);
+            float arc = Mathf.Sin(smooth * Mathf.PI) * arcHeight;
+            pos += upDir * arc;
+
+            piece.transform.position = pos;
+            piece.transform.rotation = Quaternion.Slerp(startRot, targetRot, smooth);
+            yield return null;
+        }
+
+        piece.transform.position = targetPos;
+        piece.transform.rotation = targetRot;
+    }
+
+    // Bounce on landing
+    IEnumerator BounceEffect(GameObject piece, Vector3 landPos, Vector3 outDir)
+    {
+        float elapsed = 0f;
+
+        while (elapsed < bounceDuration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / bounceDuration;
+            float bounce = Mathf.Sin(t * Mathf.PI * 2f) * bounceHeight * (1f - t);
+            piece.transform.position = landPos + outDir * bounce;
+            yield return null;
+        }
+
+        piece.transform.position = landPos;
+    }
+
+    // Capture effect — piece flies outward and shrinks
+    IEnumerator CaptureEffect(GameObject captured, Vector3 outDir)
+    {
+        float elapsed = 0f;
+        float duration = 0.3f;
+        Vector3 startPos = captured.transform.position;
+        Vector3 flyDir = (outDir + Vector3.up).normalized;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            captured.transform.position = startPos + flyDir * t * 2f;
+            captured.transform.localScale = Vector3.one * pieceScale * (1f - t);
+            yield return null;
+        }
+
+        Destroy(captured);
+    }
+
+    // Trail during movement
+    TrailRenderer AddTrail(GameObject piece)
+    {
+        if (piece == null) return null;
+
+        TrailRenderer trail = piece.GetComponent<TrailRenderer>();
+        if (trail == null)
+            trail = piece.AddComponent<TrailRenderer>();
+
+        trail.time = 0.3f;
+        trail.startWidth = 0.12f;
+        trail.endWidth = 0f;
+        trail.material = new Material(Shader.Find("Sprites/Default"));
+        trail.startColor = new Color(0f, 1f, 0.5f, 1f);
+        trail.endColor = new Color(0f, 1f, 0.5f, 0f);
+        trail.enabled = true;
+        return trail;
+    }
+
+    // ── SELECTION INDICATOR ───────────────────────────────────────────
+    void ShowSelectionIndicator(BoardCell cell)
+    {
+        if (selectionIndicator == null)
+        {
+            selectionIndicator = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            selectionIndicator.transform.localScale = Vector3.one * 0.2f;
+            Destroy(selectionIndicator.GetComponent<Collider>());
+
+            Material mat = new Material(Shader.Find("Standard"));
+            mat.color = new Color(1f, 1f, 0f, 0.8f);
+            mat.EnableKeyword("_EMISSION");
+            mat.SetColor("_EmissionColor", new Color(1f, 0.8f, 0f));
+            selectionIndicator.GetComponent<Renderer>().material = mat;
+        }
+
+        Vector3 outDir = GetOutwardDir(cell);
+        selectionIndicator.transform.position =
+            cell.transform.position + outDir *
+            (GetPiecePlacementOffset(cell.currentPiece, outDir) + 0.4f);
+
+        selectionIndicator.SetActive(true);
+    }
+
+    void HideSelectionIndicator()
+    {
+        if (selectionIndicator != null)
+            selectionIndicator.SetActive(false);
+    }
+
+    // ── HIGHLIGHTING ──────────────────────────────────────────────────
     void HighlightMoves(BoardCell cell)
     {
         highlightedMoves = GetLegalMoves(cell);
@@ -337,6 +530,7 @@ public class ChessBoardManager : MonoBehaviour
         originalMaterials.Clear();
     }
 
+    // ── LEGAL MOVES ───────────────────────────────────────────────────
     List<BoardCell> GetLegalMoves(BoardCell cell)
     {
         if (!cell.IsOccupied) return new List<BoardCell>();
@@ -363,13 +557,11 @@ public class ChessBoardManager : MonoBehaviour
     {
         List<BoardCell> moves = new List<BoardCell>();
 
-        // 1. Single Step Forward
         BoardCell fwd = GetPawnForwardCell(cell, piece);
         if (fwd != null && !fwd.IsOccupied)
         {
             moves.Add(fwd);
 
-            // 2. Double Step Forward (Only allowed if the pawn hasn't moved AND the first step isn't blocked)
             if (!piece.hasMoved)
             {
                 BoardCell dbl = GetPawnForwardCell(fwd, piece);
@@ -377,7 +569,6 @@ public class ChessBoardManager : MonoBehaviour
                 {
                     moves.Add(dbl);
 
-                    // Low Gravity Bonus Step
                     if (lowGravityMode)
                     {
                         BoardCell triple = GetPawnForwardCell(dbl, piece);
@@ -388,7 +579,6 @@ public class ChessBoardManager : MonoBehaviour
             }
         }
 
-        // 3. Strict Diagonal Captures
         int dir = (piece.pieceColor == PieceColor.White) ? 1 : -1;
         foreach (int dx in new[] { -1, 1 })
         {
@@ -397,14 +587,8 @@ public class ChessBoardManager : MonoBehaviour
             {
                 ChessPiece target = diag.currentPiece.GetComponent<ChessPiece>();
                 if (target.pieceColor != piece.pieceColor)
-                {
-                    // Safety Check: Ensure the wrapped cell is a true geometric diagonal 
-                    // and hasn't accidentally warped straight ahead due to face translation
                     if (diag.x != cell.x || diag.y != cell.y || diag.z != cell.z)
-                    {
                         moves.Add(diag);
-                    }
-                }
             }
         }
 
@@ -446,9 +630,12 @@ public class ChessBoardManager : MonoBehaviour
     List<BoardCell> GetKnightMoves(BoardCell cell)
     {
         List<BoardCell> moves = new List<BoardCell>();
-        Vector2Int[] offsets = {
-            new Vector2Int(1,2), new Vector2Int(2,1), new Vector2Int(-1,2), new Vector2Int(-2,1),
-            new Vector2Int(1,-2), new Vector2Int(2,-1), new Vector2Int(-1,-2), new Vector2Int(-2,-1)
+        Vector2Int[] offsets =
+        {
+            new Vector2Int( 1, 2), new Vector2Int( 2, 1),
+            new Vector2Int(-1, 2), new Vector2Int(-2, 1),
+            new Vector2Int( 1,-2), new Vector2Int( 2,-1),
+            new Vector2Int(-1,-2), new Vector2Int(-2,-1)
         };
         foreach (Vector2Int off in offsets)
         {
@@ -465,8 +652,16 @@ public class ChessBoardManager : MonoBehaviour
         HashSet<BoardCell> visited = new HashSet<BoardCell> { cell };
 
         List<Vector2Int> dirs = new List<Vector2Int>();
-        if (straight) dirs.AddRange(new[] { new Vector2Int(1, 0), new Vector2Int(-1, 0), new Vector2Int(0, 1), new Vector2Int(0, -1) });
-        if (diagonal) dirs.AddRange(new[] { new Vector2Int(1, 1), new Vector2Int(-1, 1), new Vector2Int(1, -1), new Vector2Int(-1, -1) });
+        if (straight) dirs.AddRange(new[]
+        {
+            new Vector2Int( 1, 0), new Vector2Int(-1, 0),
+            new Vector2Int( 0, 1), new Vector2Int( 0,-1)
+        });
+        if (diagonal) dirs.AddRange(new[]
+        {
+            new Vector2Int( 1, 1), new Vector2Int(-1, 1),
+            new Vector2Int( 1,-1), new Vector2Int(-1,-1)
+        });
 
         foreach (Vector2Int dir in dirs)
         {
@@ -493,6 +688,7 @@ public class ChessBoardManager : MonoBehaviour
         return moves;
     }
 
+    // ── WRAP AROUND ───────────────────────────────────────────────────
     BoardCell GetWrappedCell(BoardCell fromCell, Vector2Int dir)
     {
         if (fromCell == null) return null;
@@ -510,7 +706,6 @@ public class ChessBoardManager : MonoBehaviour
     {
         const int MAX = 6;
         newFace = fromFace; newX = x; newY = y; newZ = z;
-
         int sx = x + dir.x;
         int sy = y + dir.y;
 
@@ -531,37 +726,45 @@ public class ChessBoardManager : MonoBehaviour
                 else if (sx < 0) { newFace = "left"; newX = 0; newY = y; newZ = 1; return true; }
                 break;
             case "top":
-                int stx = x + dir.x; int stz = z + dir.y;
-                if (stx >= 0 && stx <= MAX && stz >= 0 && stz <= MAX) { newX = stx; newY = MAX; newZ = stz; return true; }
-                if (stz < 0) { newFace = "front"; newX = x; newY = MAX - 1; newZ = MAX; return true; }
-                else if (stz > MAX) { newFace = "back"; newX = x; newY = MAX - 1; newZ = 0; return true; }
-                else if (stx > MAX) { newFace = "right"; newX = MAX; newY = MAX; newZ = z; return true; }
-                else if (stx < 0) { newFace = "left"; newX = 0; newY = MAX; newZ = z; return true; }
-                break;
+                {
+                    int stx = x + dir.x; int stz = z + dir.y;
+                    if (stx >= 0 && stx <= MAX && stz >= 0 && stz <= MAX) { newX = stx; newY = MAX; newZ = stz; return true; }
+                    if (stz < 0) { newFace = "front"; newX = x; newY = MAX - 1; newZ = MAX; return true; }
+                    else if (stz > MAX) { newFace = "back"; newX = x; newY = MAX - 1; newZ = 0; return true; }
+                    else if (stx > MAX) { newFace = "right"; newX = MAX; newY = MAX; newZ = z; return true; }
+                    else if (stx < 0) { newFace = "left"; newX = 0; newY = MAX; newZ = z; return true; }
+                    break;
+                }
             case "bottom":
-                int sbx = x + dir.x; int sbz = z + dir.y;
-                if (sbx >= 0 && sbx <= MAX && sbz >= 0 && sbz <= MAX) { newX = sbx; newY = 0; newZ = sbz; return true; }
-                if (sbz < 0) { newFace = "front"; newX = x; newY = 1; newZ = MAX; return true; }
-                else if (sbz > MAX) { newFace = "back"; newX = x; newY = 1; newZ = 0; return true; }
-                else if (sbx > MAX) { newFace = "right"; newX = MAX; newY = 0; newZ = z; return true; }
-                else if (sbx < 0) { newFace = "left"; newX = 0; newY = 0; newZ = z; return true; }
-                break;
+                {
+                    int sbx = x + dir.x; int sbz = z + dir.y;
+                    if (sbx >= 0 && sbx <= MAX && sbz >= 0 && sbz <= MAX) { newX = sbx; newY = 0; newZ = sbz; return true; }
+                    if (sbz < 0) { newFace = "front"; newX = x; newY = 1; newZ = MAX; return true; }
+                    else if (sbz > MAX) { newFace = "back"; newX = x; newY = 1; newZ = 0; return true; }
+                    else if (sbx > MAX) { newFace = "right"; newX = MAX; newY = 0; newZ = z; return true; }
+                    else if (sbx < 0) { newFace = "left"; newX = 0; newY = 0; newZ = z; return true; }
+                    break;
+                }
             case "left":
-                int slz = z + dir.x; int sly = y + dir.y;
-                if (slz >= 0 && slz <= MAX && sly >= 0 && sly <= MAX) { newX = 0; newY = sly; newZ = slz; return true; }
-                if (sly > MAX) { newFace = "top"; newX = 0; newY = MAX; newZ = z; return true; }
-                else if (sly < 0) { newFace = "bottom"; newX = 0; newY = 0; newZ = z; return true; }
-                else if (slz > MAX) { newFace = "front"; newX = 1; newY = y; newZ = MAX; return true; }
-                else if (slz < 0) { newFace = "back"; newX = 1; newY = y; newZ = 0; return true; }
-                break;
+                {
+                    int slz = z + dir.x; int sly = y + dir.y;
+                    if (slz >= 0 && slz <= MAX && sly >= 0 && sly <= MAX) { newX = 0; newY = sly; newZ = slz; return true; }
+                    if (sly > MAX) { newFace = "top"; newX = 0; newY = MAX; newZ = z; return true; }
+                    else if (sly < 0) { newFace = "bottom"; newX = 0; newY = 0; newZ = z; return true; }
+                    else if (slz > MAX) { newFace = "front"; newX = 1; newY = y; newZ = MAX; return true; }
+                    else if (slz < 0) { newFace = "back"; newX = 1; newY = y; newZ = 0; return true; }
+                    break;
+                }
             case "right":
-                int srz = z + dir.x; int sry = y + dir.y;
-                if (srz >= 0 && srz <= MAX && sry >= 0 && sry <= MAX) { newX = MAX; newY = sry; newZ = srz; return true; }
-                if (sry > MAX) { newFace = "top"; newX = MAX; newY = MAX; newZ = z; return true; }
-                else if (sry < 0) { newFace = "bottom"; newX = MAX; newY = 0; newZ = z; return true; }
-                else if (srz > MAX) { newFace = "back"; newX = MAX - 1; newY = y; newZ = 0; return true; }
-                else if (srz < 0) { newFace = "front"; newX = MAX - 1; newY = y; newZ = MAX; return true; }
-                break;
+                {
+                    int srz = z + dir.x; int sry = y + dir.y;
+                    if (srz >= 0 && srz <= MAX && sry >= 0 && sry <= MAX) { newX = MAX; newY = sry; newZ = srz; return true; }
+                    if (sry > MAX) { newFace = "top"; newX = MAX; newY = MAX; newZ = z; return true; }
+                    else if (sry < 0) { newFace = "bottom"; newX = MAX; newY = 0; newZ = z; return true; }
+                    else if (srz > MAX) { newFace = "back"; newX = MAX - 1; newY = y; newZ = 0; return true; }
+                    else if (srz < 0) { newFace = "front"; newX = MAX - 1; newY = y; newZ = MAX; return true; }
+                    break;
+                }
         }
         return false;
     }
@@ -570,7 +773,6 @@ public class ChessBoardManager : MonoBehaviour
     {
         const int MAX = 6;
         int gx, gy, gz;
-
         switch (face)
         {
             case "front": gx = x; gy = y; gz = MAX; break;
@@ -581,11 +783,11 @@ public class ChessBoardManager : MonoBehaviour
             case "bottom": gx = x; gy = 0; gz = z; break;
             default: return null;
         }
-
         if (gx < 0 || gx > MAX || gy < 0 || gy > MAX || gz < 0 || gz > MAX) return null;
         return cells[gx, gy, gz];
     }
 
+    // ── WIN CONDITION ─────────────────────────────────────────────────
     void CheckWinCondition()
     {
         bool whiteKingAlive = false;
@@ -597,10 +799,8 @@ public class ChessBoardManager : MonoBehaviour
                 {
                     BoardCell cell = cells[x, y, z];
                     if (cell == null || !cell.IsOccupied) continue;
-
                     ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
                     if (piece == null || piece.pieceType != PieceType.King) continue;
-
                     if (piece.pieceColor == PieceColor.White) whiteKingAlive = true;
                     if (piece.pieceColor == PieceColor.Black) blackKingAlive = true;
                 }
@@ -615,6 +815,7 @@ public class ChessBoardManager : MonoBehaviour
         Debug.Log($"[WIN] GAME OVER — {winner} wins!");
     }
 
+    // ── CORE SHIFT ────────────────────────────────────────────────────
     void TriggerCoreShift()
     {
         turnCount++;
@@ -635,18 +836,20 @@ public class ChessBoardManager : MonoBehaviour
                     if (cell != null && cell.IsOccupied)
                     {
                         Vector3 outDir = GetOutwardDir(cell);
-                        cell.currentPiece.transform.position = cell.transform.position + outDir * GetPiecePlacementOffset(cell.currentPiece, outDir);
+                        cell.currentPiece.transform.position =
+                            cell.transform.position + outDir * GetPiecePlacementOffset(cell.currentPiece, outDir);
                     }
                 }
     }
 
+    // ── AI ────────────────────────────────────────────────────────────
     IEnumerator AIMove()
     {
         if (gameOver || aiThinking) yield break;
 
         aiThinking = true;
         Debug.Log("[AI] Thinking...");
-        yield return new WaitForSeconds(1.0f); // Slight extra padding for smooth transition
+        yield return new WaitForSeconds(1.0f);
 
         if (gameOver) { aiThinking = false; yield break; }
 
@@ -658,10 +861,8 @@ public class ChessBoardManager : MonoBehaviour
                 {
                     BoardCell cell = cells[x, y, z];
                     if (cell == null || !cell.IsOccupied) continue;
-
                     ChessPiece piece = cell.currentPiece.GetComponent<ChessPiece>();
                     if (piece == null || piece.pieceColor != PieceColor.Black) continue;
-
                     foreach (BoardCell move in GetLegalMoves(cell))
                         allMoves.Add((cell, move));
                 }
@@ -673,7 +874,10 @@ public class ChessBoardManager : MonoBehaviour
             yield break;
         }
 
-        var kingCapture = allMoves.Find(m => m.to.IsOccupied && m.to.currentPiece.GetComponent<ChessPiece>().pieceType == PieceType.King);
+        var kingCapture = allMoves.Find(m =>
+            m.to.IsOccupied &&
+            m.to.currentPiece.GetComponent<ChessPiece>().pieceType == PieceType.King);
+
         var anyCapture = allMoves.FindAll(m => m.to.IsOccupied);
 
         (BoardCell from, BoardCell to) chosen;
@@ -686,13 +890,9 @@ public class ChessBoardManager : MonoBehaviour
             chosen = allMoves[Random.Range(0, allMoves.Count)];
 
         ChessPiece aiPiece = chosen.from.currentPiece.GetComponent<ChessPiece>();
-        Debug.Log($"[AI] Chose {aiPiece.pieceType} from ({chosen.from.x},{chosen.from.y},{chosen.from.z}) to ({chosen.to.x},{chosen.to.y},{chosen.to.z})");
+        Debug.Log($"[AI] {aiPiece.pieceType} ({chosen.from.x},{chosen.from.y},{chosen.from.z}) → ({chosen.to.x},{chosen.to.y},{chosen.to.z})");
 
-        // Turn off AI thinking flag right before the move happens 
-        // so the system knows the human player's turn phase is fully opening up.
         aiThinking = false;
-
-        // Execute move will change currentTurn to White and automatically trigger SwitchCameraToCurrentTurn()
         ExecuteMove(chosen.from, chosen.to);
     }
 }

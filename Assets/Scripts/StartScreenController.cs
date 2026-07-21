@@ -9,6 +9,6 @@ public AudioSource clickSound;
     
     {
         clickSound?.Play();
-        SceneManager.LoadScene("LoadingScene");
+        SceneManager.LoadScene("MenuScene");
     }
 }
