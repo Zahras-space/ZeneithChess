@@ -1,65 +1,88 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
+using UnityEngine.Audio;
 
-public class PauseMenuManager : MonoBehaviour
+public class PauseMenuUI : MonoBehaviour
 {
-    [Header("UI References")]
-    public GameObject menuPanel;
+    [Header("References")]
+    public GameObject pauseMenuRoot;   // the PauseMenu Canvas itself
     public Slider volumeSlider;
 
-    [Header("Audio")]
-    public AudioSource[] allAudioSources; // drag all AudioSources here
+    [Header("ClickAudio")]
+    public AudioSource clickSound;
+
+    [Header("Audio (optional)")]
+    public AudioMixer audioMixer;
+    public string volumeParam = "MasterVolume";
+
+    [Header("Scene Names")]
+    public string menuSceneName = "MenuScene";
 
     private bool isPaused = false;
 
-    void Start()
+    void Awake()
     {
-        // Menu starts hidden
-        menuPanel.SetActive(false);
+        if (pauseMenuRoot != null)
+            pauseMenuRoot.SetActive(false);
 
-        // Set slider to current volume and listen for changes
-        volumeSlider.value = AudioListener.volume;
-        volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+        if (volumeSlider != null)
+            volumeSlider.onValueChanged.AddListener(SetVolume);
     }
 
     void Update()
     {
-        // Press Escape to toggle menu
         if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-                ResumeGame();
-            else
-                PauseGame();
-        }
+            TogglePause();
     }
 
-    public void PauseGame()
+    public void TogglePause()
     {
-        menuPanel.SetActive(true);
-        Time.timeScale = 0f;    // freezes all game time
+         clickSound?.Play();
+        if (isPaused) Resume();
+        else Pause();
+    }
+
+    public void Pause()
+    {
         isPaused = true;
+        if (pauseMenuRoot != null)
+            pauseMenuRoot.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-    public void ResumeGame()
+    public void Resume()
     {
-        menuPanel.SetActive(false);
-        Time.timeScale = 1f;    // resumes game time
         isPaused = false;
-    }
-
-    public void OnVolumeChanged(float value)
-    {
-        // Controls ALL audio in the scene at once
-        AudioListener.volume = value;
-    }
-
-    public void QuitToMenu()
-    {
-        // Restore time before switching scenes
+        if (pauseMenuRoot != null)
+            pauseMenuRoot.SetActive(false);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("StartScene");
+    }
+
+    public void OnRestartPressed()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void OnMainMenuPressed()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(menuSceneName);
+    }
+
+    public void OnQuitPressed()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
+
+    private void SetVolume(float value)
+    {
+        if (audioMixer != null)
+            audioMixer.SetFloat(volumeParam, Mathf.Log10(Mathf.Clamp(value, 0.0001f, 1f)) * 20f);
     }
 }

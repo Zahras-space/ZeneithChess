@@ -123,8 +123,8 @@ public class ChessBoardManager : MonoBehaviour
 
         string blackFace = ChooseVisibleSideFace();
         List<BoardCell> blackFaceCells = GetFaceCells(blackFace);
-        SpawnFaceBackRow(blackFaceCells, PieceColor.Black, blackFace, rowLine: 5);
-        SpawnFacePawnRow(blackFaceCells, PieceColor.Black, blackFace, rowLine: 4);
+        SpawnFaceBackRow(blackFaceCells, PieceColor.Black, blackFace, rowLine: 1);
+        SpawnFacePawnRow(blackFaceCells, PieceColor.Black, blackFace, rowLine: 2);
     }
 
     void SpawnBackRow(List<BoardCell> faceCells, PieceColor color, int rowY)

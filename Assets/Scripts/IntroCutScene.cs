@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.SceneManagement;
 
 public class IntroCutscene : MonoBehaviour
 {
@@ -12,15 +13,29 @@ public class IntroCutscene : MonoBehaviour
     [Tooltip("The UI/GameObject displaying the cutscene.")]
     public GameObject cutsceneCanvas;
 
+    [Header("Scene To Load After Video")]
+    public string loadingSceneName = "LoadingScreen";
+
     [Header("Settings")]
     public bool allowSkip = true;
 
     private bool hasEnded = false;
+    private bool isPlaying = false;
 
-    void Start()
+    void Awake()
     {
         if (videoPlayer == null)
             videoPlayer = GetComponent<VideoPlayer>();
+
+        if (cutsceneCanvas != null)
+            cutsceneCanvas.SetActive(false);
+    }
+    public void PlayIntro()
+    {
+        if (isPlaying) return;
+
+        hasEnded = false;
+        isPlaying = true;
 
         // Hide the menu while the cutscene plays
         if (menuRoot != null)
@@ -39,7 +54,7 @@ public class IntroCutscene : MonoBehaviour
 
     void Update()
     {
-        if (hasEnded || !allowSkip)
+        if (!isPlaying || hasEnded || !allowSkip)
             return;
 
         if (Input.GetKeyDown(KeyCode.Space) ||
@@ -72,17 +87,14 @@ public class IntroCutscene : MonoBehaviour
             return;
 
         hasEnded = true;
+        isPlaying = false;
 
-        // Reveal the menu
-        if (menuRoot != null)
-            menuRoot.SetActive(true);
-
-        // Hide cutscene
         if (cutsceneCanvas != null)
             cutsceneCanvas.SetActive(false);
 
-        // Remove event listener
         if (videoPlayer != null)
             videoPlayer.loopPointReached -= OnVideoFinished;
+
+        SceneManager.LoadScene(loadingSceneName);
     }
 }
